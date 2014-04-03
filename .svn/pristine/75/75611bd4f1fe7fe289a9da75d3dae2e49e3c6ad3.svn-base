@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    - DispatcherServlet application context for Application's web tier.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!--
+        - The controllers are autodetected POJOs labeled with the @Controller annotation.
+    -->
+    <context:component-scan base-package="kr.mp.dwg">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    
+    <!--
+        - The form-based controllers within this application provide @RequestMapping 
+        - annotations at the type level for path mapping URLs and @RequestMapping 
+        - at the method level for request type mappings (e.g., GET and POST). 
+        - In contrast, ClinicController - which is not form-based - provides 
+        - @RequestMapping only at the method level for path mapping URLs.
+        -
+        - DefaultAnnotationHandlerMapping is driven by these annotations and is 
+        - enabled by default with Java 5+.
+    -->
+
+    <!-- support JSR303 annotation if JSR 303 validation present on classpath -->
+		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+                <property name="validator" ref="validator"/>
+            </bean>
+        </property>
+    </bean>
+ 
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+	
+
+    <!--
+        - This bean processes annotated handler methods, applying Application-specific PropertyEditors
+        - for request parameter binding. It overrides the default AnnotationMethodHandlerAdapter.
+     -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean class="kr.mp.dwg.cmmn.web.EgovBindingInitializer"/>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+    
+    <!--
+        - This bean resolves specific types of exceptions to corresponding logical 
+        - view names for error views. The default behaviour of DispatcherServlet 
+        - is to propagate all exceptions to the servlet container: this will happen 
+        - here with all other types of exceptions.
+    -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="cmmn/error/error"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">cmmn/error/dataAccessFailure</prop>
+                <prop key="org.springframework.transaction.TransactionException">cmmn/error/transactionFailure</prop>
+                <prop key="egovframework.rte.fdl.cmmn.exception.EgovBizException">cmmn/error/bizError</prop>
+                <prop key="org.springframework.security.AccessDeniedException">cmmn/error/authError</prop>
+                <prop key="org.springframework.web.bind.MissingServletRequestParameterException">cmmn/error/invalidParameterError</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!--
+        - This bean configures the 'prefix' and 'suffix' properties of 
+        - InternalResourceViewResolver, which resolves logical view names 
+        - returned by Controllers. For example, a logical view name of "vets" 
+        - will be mapped to "/WEB-INF/jsp/vets.jsp".
+    -->
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1" 
+    p:viewClass="org.springframework.web.servlet.view.JstlView" 
+    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+
+    <!-- For Pagination Tag -->
+    <bean id="imageRenderer" class="kr.mp.dwg.cmmn.web.EgovImgPaginationRenderer"/>
+
+    <bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+        <property name="rendererType">
+            <map>
+                <entry key="image" value-ref="imageRenderer"/> 
+            </map>
+        </property>
+    </bean>
+	<!-- /For Pagination Tag -->
+	
+	<!-- Locale 설정을위한 resolver -->
+    <!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" >
+    	<property name="defaultLocale" value="en" />
+    </bean> -->
+    
+    <!-- Locale Intercepter -->
+    <!-- <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="language" />
+    </bean> -->
+    
+    <!-- Locale 설정을위한 resolver -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+
+    <!-- Locale Intercepter -->
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang" />
+    </bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
+		<property name="basenames">
+            <list>
+                <!-- properties파일의 이름을 등록한다. 등록되 있지 않을 시에 클래스 패스에서 디폴트로 message.properties파일을 찾는다. -->
+                <value>classpath:messages/18n/messages</value>
+            </list>
+        </property>
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
+    
+    <!--ParameterMethodNameResolver - MultiAction Controller 구현시 메소드명을 파라미터로 넘겨 컨트롤러를 구분한다. -->
+    <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName">
+            <value>method</value>   <!-- url/aaa.jsp?method=메소드명 - 이같은 형식으로 파라미터 전송하면 해당 메소드명이 호출된다. -->
+        </property>
+        <property name="defaultMethodName">
+            <value>mainView</value>
+        </property>
+    </bean>
+    
+    <!-- <bean id="annotationMapper" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="localeChangeInterceptor"/>
+			</list>
+		</property>
+	</bean> -->
+    <!-- URL SimpleUrlHandlerMapping -->
+    <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor" />
+            </list>
+        </property>
+        <property name="alwaysUseFullPath" value="true" />
+        <property name="mappings">
+            <props>
+                <prop key="/dwg/login/main.do">loginController</prop>                     
+                <prop key="/main.do">mainController</prop>   
+            </props>
+        </property>
+    </bean>
+	<bean id="mainController" class="kr.mp.dwg.main.MainViewController" p:methodNameResolver-ref="methodNameResolver" /> 
+	<bean id="loginController" class="kr.mp.dwg.loginMgt.web.LoginController" p:methodNameResolver-ref="methodNameResolver" /> 
+</beans>

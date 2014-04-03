@@ -1,0 +1,75 @@
+﻿
+#타이틀
+tit.mapp.info.mgt=매핑 정보 관리
+tit.obj.info.mgt=객체 정보 관리  
+tit.dwg.info.mgt=매핑 도면 관리
+tit.obj.info.mgt.reg=객체 정보 관리 (등록)  
+tit.obj.info.mgt.upd=객체 정보 관리 (수정)
+#설정 버튼
+btn.add=추가
+btn.create=등록
+btn.update=수정
+btn.delete=삭제
+btn.cancle=취소
+btn.dwgView=상세보기
+#단어
+words.dwg.mgt.register=도면 관리 (등록) 
+btn.wnd.cls=닫기
+words.serc.cond.input.form=검색조건 입력 서식
+words.serc.cond=검색조건
+words.srch=검색
+btn.hrnk.list=상위목록
+words.cnt=건
+words.totl.srch.cnt=총 검색 건수
+words.obj.info=객체 정보
+words.obj.edit=편집
+words.obj.id=객체 ID
+words.obj.nm=객체 명
+words.obj.typ=객체 타입
+words.use.yn=사용여부
+words.x.Coordinates=X 좌표
+words.y.Coordinates=Y 좌표
+words.dwg.knd=도면 종류
+words.dwg.nm=도면 명
+
+words.totl=전체
+words.sel=선택 
+
+words.dwg.chart=도면 차트
+words.dwg.list=도면 리스트
+words.loading=로딩중…
+
+msg.notSel=선택된 항목이 없습니다.
+sentence.want.del=삭제 하시겠습니까?
+msg.alert.success.create=등록 하였습니다.
+msg.alert.success.update=수정 하였습니다.
+msg.alert.success.delete=삭제 하였습니다.
+
+tit.dwg.info=매핑 정보
+words.reg.date=등록일자
+words.dwg.no=도면 번호
+words.dwg.group.cd=도면 그룹 코드
+
+sentence.relv.data.notdel.msg=연관된 데이터가 존재하여 삭제할 수 없습니다. 
+sentence.obj.typ.sel=객체 타입을 선택 하세요.
+sentence.obj.nm.input=객체 명을 입력하세요.
+sentence.obj.x.input=X좌표를 입력하세요.
+sentence.obj.y.input=Y좌표를 입력하세요.
+
+sentence.obj.nm.dup.msg=입력하신 객체 명은 이미 등록되어 있습니다.
+sentence.mnu.url.asgn.msg=메뉴 url이 지정되지 않았습니다. ID: 
+
+words.building=건물
+words.road=도로
+words.land=토지
+
+#words.dwgView=도면 
+
+sentence.user.id.msg=사용자 아이디가 존재하지 않습니다.
+sentence.pwd.input.msg=패스워드를 입력하세요.
+sentence.input.pswd.msg=입력하신 비밀번호가 틀렸습니다.
+words.esq=님
+words.logout=로그아웃
+
+#error
+words.error.msg=정상적인 접근이 아닙니다.

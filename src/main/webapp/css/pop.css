@@ -1,0 +1,11 @@
+﻿@charset "euc-kr";
+@import url('default.css');
+
+/* 서비스별 적용 */
+body{width:100% !important;}
+#wrap_pop{min-width:500px;}
+#header_pop{overflow:hidden;width:100%;height:44px;background:#7ca832 url(../images/pop/bg_pop_header.gif) repeat-x left top;}
+.tit{padding:16px 0 0 37px;font-size:12px;font-weight:bold;color:#fff;background:url(../images/pop/blt_pop_tit.png) no-repeat 17px 13px;}
+.close{position:absolute;top:12px;right:20px;}
+#container_pop{padding:3px 10px 10px 10px;}
+#container_pop:after{content:"";clear:both;display:block;}

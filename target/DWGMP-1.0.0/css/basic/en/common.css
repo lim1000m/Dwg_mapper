@@ -1,0 +1,119 @@
+@charset "utf-8";
+@import url('button.css');
+
+/* base */
+body{font-size:12px;font-family:Arial,AppleGothic,sans-serif;color:#666;}
+*{padding:0;margin:0;}
+h1, h2, h3, h4, h5, h6{font-size:100%;}
+ol, ul, li{list-style-type:none;}
+form, fieldset, img{border:0;}
+input, select, textarea{font-size:12px;color:#333;border:1px solid #a9a9ab;vertical-align:middle;}
+input.rc{border:none !important;}
+input.in_small{width:80px !important;}
+input.sec{width:30px !important;text-align:right !important;}
+input.cal_dt{width:125px !important;}
+input.cal_d{width:80px !important;}
+textarea{width:98%;}
+.tp_ro{color:#333 !important;border:1px solid #aaa !important;background:#dedede !important;}/*readonly type form*/
+img{vertical-align:top;}
+a{text-decoration:none;color:#333;}
+a:hover{text-decoration:underline;color:#4651AE;}
+a.hover:hover{text-decoration:underline !important;}
+/*table{border-collapse:collapse;border-spacing:0;} */
+*html .png24 {tmp:expression(setPng24(this));}/*스크립트 선언 후 사용*/
+
+/* 숨김영역 */
+.skip{overflow:hidden;position:absolute;left:-2000%;z-index:-1;font-size:0;line-height:0;color:#FFF;}
+.skip2{visibility:hidden;overflow:hidden;width:1px;height:1px;color:#FFF;}
+
+/* iframe 설정 */
+iframe{width:100%;height:100%;}
+/* iframe:Hidden 설정 */
+#iframeHid{visibility:hidden;height:0px;width:0px;}
+
+/* etc */
+.fr{float:right !important;}
+.fl{float:left !important;}
+.center{margin:0 auto !important;}
+.d_in{display:inline !important;}
+.d_bl{display:block !important;}
+.d_no{display:none !important;}
+.txtl{text-align:left !important;}
+.txtr{text-align:right !important;}
+.txtc{text-align:center !important;}
+.clear{clear:both !important;}
+.dummy{margin:-1;font-size:0;line-height:0;*zoom:1;}
+.tinytxt{font-size:1px;line-height:0px !important;}
+.txt_nrw{letter-spacing:-1px !important;}
+.imode{ime-mode:disabled !important;}
+.point{cursor:pointer !important;}
+.po_a{position:absolute !important;}
+.po_r{position:relative !important;}
+.nobg{background:none !important;}
+.nobor{border:0 !important;}
+.bor_basic{border:1px solid #ccc;}
+.test {border:1px solid Red;}
+
+/* margin&padding */
+.m0{margin:0 !important;}
+.mt5{margin-top:5px !important;}
+.mt10{margin-top:10px !important;}
+.mt15{margin-top:15px !important;}
+.mt20{margin-top:20px !important;}
+.mb5{margin-bottom:5px !important;}
+.mb10{margin-bottom:10px !important;}
+.mb15{margin-bottom:15px !important;}
+.mb20{margin-bottom:20px !important;}
+.p0{padding:0 !important;}
+.pt0{padding-top:0 !important;}
+.pt5{padding-top:5px !important;}
+.pt10{padding-top:10px !important;}
+.pt15{padding-top:15px !important;}
+.pt20{padding-top:20px !important;}
+.pb5{padding-bottom:5px !important;}
+.pb10{padding-bottom:10px !important;}
+.pb15{padding-bottom:15px !important;}
+.pb20{padding-bottom:20px !important;}
+
+/* width, height */
+.w0{width:0 !important;}
+.w100p{width:100% !important;}
+.w95p{width:95% !important;}
+.w90p{width:90% !important;}
+.w50p{width:50% !important;}
+.w49p{width:49% !important;}
+.w45p{width:45% !important;}
+.h0{height:0 !important;}
+.h100p{height:100% !important;}
+.h95p{height:95% !important;}
+.h90p{height:90% !important;}
+.h50p{height:50% !important;}
+.h45p{height:45% !important;}
+
+/* layout */
+#wrap{width:100%;}
+
+/* 건너뛰기 메뉴 */
+#skipToContent{position:relative;} 
+#skipToContent a{display:block;height:1px;width:1px;margin-bottom:-1px;overflow:hidden;text-align:center;color:#000;white-space:nowrap;} 
+#skipToContent a:focus, 
+#skipToContent a:active{height:auto;width:100%;padding:5px;margin-bottom:10px;} 
+
+/* input text width */
+.f_w01{width:190px;}  /* 지역정보 */
+.f_w02{width:190px;}  /* 서비스테마 */
+.f_w03{width:190px;}  /* 단위서비스 */
+.f_w04{width:230px;}  /* 이벤트 */
+.f_w05{width:190px;}  /* 사용자 정보 */
+.f_w06{width:150px;}  /* 워크플로우 TASK 정의 */
+.f_w07{width:310px;}  /* 현장 센서 정보 관리 상세 화면 */
+.f_w08{width:250px;}  /* 유관기관관리 */
+.f_w09{width:360px;}  /* 외부연동시스템 관리 */
+.f_w10{width:315px;}  /* 이벤트 상세 관리 화면들 */
+.f_w11{width:150px;}  /* 상황 이벤트 항목/등급관리, 시설물이벤트 고장유형관리 */
+.f_w12{width:190px;}  /* 트레이스 원문 보기 팝업 */
+.f_w13{width:175px;}  /* 서브시스템 정보 */
+.f_w20{width:150px;}  /* 상용솔루션 정보 */
+.f_w30{width:150px !important;}  /* 공통코드 관리 */
+.f_w40{width:275px;}  /* 워크플로우 정의(상황지령/상황조치 관리) */
+.f_w50{width:310px;}  /* 메시지 서브항목 관리 */

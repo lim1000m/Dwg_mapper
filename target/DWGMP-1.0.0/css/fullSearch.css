@@ -1,0 +1,74 @@
+﻿/*common*/
+body{width:100%; height:100%; margin:0; padding:0; font-family:돋움 Dotum, AppleGothic, sans-serif; font-size:13px; color:#434343;}
+img{border:0;}
+ol,ul{list-style:none;}
+input{margin:0; padding:0; border:none; vertical-align:middle;}
+select{margin:0; padding:0; vertical-align:middle;}
+a{color:#636563; text-decoration:none;}
+a:link a:visited{color:#636563; text-decoration:none;}
+a:active a:hover{text-decoration:underline;}
+
+/*main*/
+.wrap_main{width:100%;}
+.header_main{width:100%; height:180px; text-align:center;}
+.header_main img{margin-top:58px;}
+.main_search_sect{float:left; width:100%; height:124px; text-align:center; background: url(../images/fullSearch/bg_main_ext.jpg) repeat-x;}
+.main_search{width:100%; height:124px; padding-top:42px; background: url(../images/fullSearch/bg_main_search.jpg) no-repeat;}
+.main_bottom{clear:both; padding-top:50px; *padding-top:10px; text-align:center;}
+.main_bottom p{margin-top:60px;}
+.main_bottom img{border:3px solid #e7e3e7; padding:10px;}
+#keyword{width:540px; height:28px; border:5px solid #719117;}
+
+/*sub*/
+#wrap_sub{position:absolute; top:0; left:0; right:0; width:100%;}
+#header{float:left; width:100%; height:69px; margin:0; background:url(../images/fullSearch/bg_header_ext.jpg) repeat-x top left;}
+.header_in{float:left; width:100%; height:69px; margin:0; background:url(../images/fullSearch/bg_header.jpg) no-repeat top left; color:#FFF; font-size:15px; font-weight:bold;}
+.logo{float:left; margin:15px 20px;}
+.logo img{vertical-align:middle;}
+.logo img.logo_img{margin-bottom:7px;}
+.logo span{margin:0 0 0 5px;}
+.search_sect{float:right; margin:15px 20px; height:25px;}
+.search_sect input#sub_search{height:18px;}
+
+#container{clear:both; width:100%; padding-top:15px;}
+.tab_sect{height:39px; width:1024px; background:url(../images/fullSearch/bg_tab.gif) no-repeat center top ; font-size:13px; font-weight:bold; text-align:center;}
+ol.tab{float:left; display:inline; height:39px; margin:0; padding-left:40px;}
+ol.tab li{width:96px; height:39px; margin:0 2px;}
+li.tab_on{float:left; padding:13px 0 0 0; background:url(../images/fullSearch/tab_on.gif) no-repeat; font-size:14px; color:#558d19;}
+li.tab_on a:link{font-size:14px; color:#558d19;}
+li.tab_off{float:left; padding:18px 0 0 0; background:url(../images/fullSearch/tab_off.gif) no-repeat;}
+.sub_cont{float:left; margin:20px 0 45px 0; *margin:8px 0 45px 0;}
+.result_wrap{float:left; width:990px; margin:10px 0 0 0;}
+dl.result{float:left; margin:0 0 0 20px; *margin:0 0 0 10px;}
+dl.result dt{float:left; width:60px; margin:7px 0 0 0; font-weight:bold;}
+dl.result dd{float:left; width:880px; margin:7px 0 0 10px; text-align:left;}
+p.pagination{margin-bottom:20px; text-align:center; font-weight:bold; color:#39A2C6;}
+p.desc{margin-top:25px; text-align:center; font-weight:bold; color:#636563;}
+
+.txtn{font-weight:normal;}
+.txtb{font-weight:bold;}
+.jade{color:#39A2C6;}
+.gray{color:#636563;}
+.black{color:#000;}
+
+/*search layer*/
+#search_layer_area{display:block; position:absolute; z-index:100; width:100%; height:100%; background:#000;  filter:alpha(opacity=50); opacity:0.5; -moz-opacity:0.5;}
+#search_layer{display:block; position:absolute; left:50%; z-index:101; width:780px; margin:150px 0 0 -390px; border:3px solid #6f9b12; background:#FFF;}
+.header_layer{float:left; width:740px; height:20px; margin:0; padding:5px 10px 5px 30px; background-color:#6f9b12; color:#FFF; font-size:15px; font-weight:bold;}
+.title{float:left;}
+.close{float:right;}
+.cont{float:left; margin:31px auto; text-align:center;}
+table{width:730px; margin:0 25px; border-collapse:collapse; border-spacing:0px; border-top:2px solid #CCC; border-bottom:2px solid #CCC;}
+table td{padding:0;*padding:10px 0;}
+table td.head{width:106px; text-align:center;}
+.first{border-bottom:1px solid #ccc;}
+ul.list{float:left; display:inline; padding:0;}
+ul.list li{display:inline; padding:0 10px 0 0;}
+.subtitle{font-weight:bold;}
+.btn_area{margin-top:15px;}
+.text_box{border:1px solid #ccc;}
+
+.notfound{padding:40px 0 0 30px;}
+.notfound p{font-weight:bold;}
+.notfound p span{color:red;}
+.notfound ul li{height:20px;}

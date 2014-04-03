@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.mp.dwg.mapDwgMgt.service.MappDwgMapper">
+	
+	<!-- id로 VO 정보 조회 -->
+	<select id="getObjectInfoKey" parameterType="java.util.HashMap" resultType="objectInfoVO">
+		SELECT obj_id, obj_nm, obj_typ, obj_x, obj_y, obj_inst, use_yn
+		    FROM dwg_gis_object
+				WHERE obj_id = #{objId}
+	</select>
+	
+	<!-- 도면 오브젝트 검색 결과 -->
+	<select id="selectMappDwgGridByMap" parameterType="java.util.HashMap" resultType="egovMap">
+		SELECT aa.* 
+		FROM (
+			SELECT  rownum rn, a.* 
+			FROM (
+				select map.obj_id, obj.obj_nm, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, map.drwng_kind, obj.obj_typ, obj.obj_x, obj.obj_y , obj.obj_inst
+				from dwg_gis_mapper map, dwg_gis_object obj
+				where obj.obj_id = map.obj_id
+					and map.obj_id in #{objId}	
+					<if test='dwgNm !=null and dwgNm !=""'>
+                     AND UPPER(mp_dwg_nm) like '%'||UPPER(#{dwgNm})||'%' 
+                    </if>
+                    <if test='dwgKnd !=null and dwgKnd !=""'>
+                     and drwng_kind=#{dwgKnd}
+                    </if>
+                    order by mp_dwg_serno asc
+			) a
+		) aa
+		WHERE rn between ${startNum} and ${endNum}
+	</select>
+
+	<!-- 조회된 행 개수 Get -->
+	<select id="selectMappDwgGridByMapCnt" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(aa.obj_id) 
+		FROM (
+			SELECT  rownum rn, a.* 
+			FROM (
+				select map.obj_id, obj.obj_nm, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, obj.obj_typ, obj.obj_x, obj.obj_y 
+				from dwg_gis_mapper map, dwg_gis_object obj
+				where obj.obj_id = map.obj_id
+					and map.obj_id in #{objId}	
+					<if test='dwgNm !=null and dwgNm !=""'>
+                     AND UPPER(mp_dwg_nm) like '%'||UPPER(#{dwgNm})||'%' 
+                    </if>
+                    <if test='dwgKnd !=null and dwgKnd !=""'>
+                     and drwng_kind=#{dwgKnd}
+                    </if>
+			) a
+		) aa
+	</select>
+</mapper>

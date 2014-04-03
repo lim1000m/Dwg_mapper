@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.mp.dwg.loginMgt.service.LoginMapper">
+	<!-- 사용자정보  -->
+    <resultMap id="userVO" type="userVO">
+        <result property="userId"           column="user_id" />
+        <result property="roleId"           column="role_id" />
+        <result property="roleNm"           column="role_nm" />
+        <result property="userNm"           column="user_nm" />
+        <result property="userPswd"         column="user_pswd" />
+        <result property="rpjob"            column="rpjob" />
+        <result property="hphoneNo"         column="hphone_no" />
+        <result property="email"            column="email" />
+        <result property="offcNo"           column="offc_no" />
+        <result property="creMn"            column="cre_mn" />
+        <result property="creDtm"           column="cre_dtm" />
+        <result property="updMn"            column="upd_mn" />
+        <result property="updDtm"           column="upd_dtm" />
+        <result property="creDtmDisp"       column="cre_dtm_disp"  />
+        <result property="updDtmDisp"       column="upd_dtm_disp"  />        
+    </resultMap>
+    
+	<select id="getUserInfo" resultMap="userVO" parameterType="java.lang.String">
+		SELECT A.USER_ID
+	              , A.USER_PSWD
+	              , A.USER_NM
+	              , A.ROLE_ID
+	              , B.ROLE_NM
+	              , A.RPJOB
+	              , A.EMAIL
+	              , A.HPHONE_NO
+	              , A.OFFC_NO
+	              , A.CRE_MN
+	              , A.CRE_DTM
+	              , A.UPD_MN
+	              , A.UPD_DTM
+	           FROM TB_USER_INFO A
+	              , TB_SCR_ROLE_INFO B
+	          WHERE A.ROLE_ID = B.ROLE_ID
+	            AND A.USER_ID = #{userId}
+	</select>
+</mapper>

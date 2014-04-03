@@ -1,0 +1,248 @@
+@charset "utf-8";
+@import url('common.css');
+
+/* Layout Basic */
+#wrap{width:100%;}
+html.if, body.if, #wrap_if{width:100%;height:100%;}
+#header{width:1250px;height:120px;background:#fff url('../../../images/basic/bg_top.gif') repeat-x left top;}
+#header_in{width:1250px;}/*100%유동 사이즈에서 고정사이즈로 변경되어 큰 의미 없는 영역*/
+#header_lft{float:left;width:215px;}
+#header_rgt{float:right;width:1000px;margin-left:35px;}
+#container{clear:both;width:1250px;*zoom:1;}/*Frameset 전환 이후 사용X*/
+#container:after{content:"";clear:both;display:block;}/*Frameset 전환 이후 사용X*/
+#container_modal{padding:10px;*zoom:1;}
+#container_modal:after{content:"";clear:both;display:block;}
+#cont_lft{width:215px;}
+#cont_rgt{width:1000px;margin-left:35px;}
+#bottom{width:100%;margin:20px 0;font-family:Arial;color:#333;text-align:center;}
+#bottom .comp_nm{font-weight:bold;color:#ed353c;}
+
+/* Tab Section */
+.tab_sect, .tab_sect_in{height:31px;background:url('../../../images/basic/bg_tab.gif') no-repeat;}
+.tab_sect{margin-bottom:12px;padding-left:11px;background-position:left top;}
+.tab_sect_in{background-position:right top;}
+.tab_sect ul{overflow:hidden;padding-top:6px;height:25px;}
+.tab_sect li{display:inline;margin-left:3px;text-align:center;}
+.tab_sect li span, .tab_sect_in li a{position:relative;display:inline-block;height:25px;background:url('../../../images/basic/bg_tab_off.png') no-repeat;} 
+.tab_sect li a{padding-left:15px;font-weight:bold;color:#44494d;background-position:left top;}
+.tab_sect li a span{left:3px;padding-top:7px;padding-right:18px;background-position:right top;}
+.tab_sect li a:hover, .tab_sect li a:active, .tab_sect li .active,
+.tab_sect li a:hover span, .tab_sect li a:active span, .tab_sect li .active span{background:url('../../../images/basic/bg_tab_on.png') no-repeat}
+.tab_sect li a:hover, .tab_sect li a:active, .tab_sect li .active{background-position:left top;}
+.tab_sect li a:hover span, .tab_sect li a:active span, .tab_sect li .active span{background-position:right top;}
+
+/******************** 서식 및 공통 구성 영역 : 관제시스템과 동일 : Start ********************/
+/* Search Box */
+.src_box_sect{margin-bottom:10px;background:#e4e4e4 url('../../../images/basic/bg_src_box_l.gif') no-repeat left top;*zoom:1;}
+.src_box_sect:after{content:"";clear:both;display:block;}
+.src_box_sect .inner{padding-top:11px;background:url('../../../images/basic/bg_src_box_rt.gif') no-repeat right top;}
+.src_box_sect .inner2{padding-right:30px;background:url('../../../images/basic/bg_src_box_r.gif') no-repeat right bottom;}
+.src_box_sect .inner3{padding-bottom:16px;background:url('../../../images/basic/bg_src_box_l.gif') no-repeat left bottom;}
+.src_box_sect th{width:120px;font-weight:bold;text-align:center;color:#232628;}
+.src_box_sect label{padding:0 3px 0 12px;font-weight:bold;vertical-align:middle;color:#52565a;}
+.src_box_sect input{height:18px;border:1px solid #c1c1c1;}
+
+/* Button Section */
+.btn_sect{margin-bottom:6px;}
+.btn_sect_top{float:right;margin-bottom:6px;text-align:right;}
+.btn_sect_bottom{clear:both;text-align:center;}
+
+/* Section Information : Section의 정보를 표시해야 할 경우 사용 : Grid의 총 게시물 수 등 */
+.sect_info{padding:10px 0 6px 0;}
+
+/* Grid Section */
+.grd_sect{clear:both;margin-bottom:10px;}
+#gridContainer{width:99.4% !important;margin:0 auto;}
+
+/* Box */
+div.box{overflow:hidden;position:relative;left:-1px;top:-1px;border:1px solid #CCC;background:#FFF;}
+div.shadow{position:relative;margin-bottom:10px;background:#AAA;}
+
+/* 서식 Basic */
+.inform{}
+.inform br{line-height:25px;}
+.inform .txt_tt{letter-spacing:-1px;}
+.inform select{height:19px;}
+.inform input{height:17px;}/*.inform input{width:95%;height:17px;} - 관제와 다른 부분*/
+.inform legend{width:100%;padding:10px 0;border-bottom:1px solid #ccc;background:#d8d8d8 url('../../../images/basic/bg_tit_form.gif') repeat-x left top;}
+.inform legend.bt_line{border-top:1px solid #ccc;}
+.inform legend span{padding:0 25px;font-weight:bold;color:#333;}
+.inform .insect{padding:10px 20px 20px 20px;}
+.inform table{width:100%;border-spacing:0;}
+.inform th, .inform td{padding:5px 0;border-top:none;border-bottom:1px dashed #d8d8d8;}
+.inform th{width:150px;text-align:left;}
+.inform td{padding:0 5px 0 10px;}
+.inform tr.last th, .inform tr.last td{border:none;}
+.inform label{display:inline-block;padding:0 15px 0 25px;font-weight:bold;vertical-align:middle;color:#52565a;background:url('../../../images/basic/blt_basic.gif') no-repeat 15px 4px;}
+.inform label.rc{padding:0 5px 0 15px;font-weight:normal;background:none;}
+.inform .txt_value{color:#111;}
+
+/* 서식 : 항목 영역 Background Type */
+.inform.bg .insect{padding:3px !important;}
+.inform.bg th, .inform.bg td{padding-top:7px;padding-bottom:7px;}
+.inform.bg th{background:#f5f5f5;}
+.inform.bg tr.last th, .inform.bg tr.last td{padding-bottom:9px;}
+.inform.bg .insect2{padding:10px !important;}
+.inform.bg .insect2 .grd_sect{margin-bottom:0 !important;}
+.wf_img_sect{border:1px solid #ccc;}
+
+/* 서식 : In Layer Type */
+.inform.inlayer legend{padding:7px 0 5px 0;}
+.inform.inlayer th, .inform.inlayer td{padding:4px 0 3px 0;}
+.inform.inlayer th{width:100px;}
+.inform.inlayer td{padding-right:5px;padding-left:10px;}
+.inform.inlayer label{padding:0 5px 0 25px;}
+
+/* 서식 : Table Type */
+.inform_tb{}
+.inform_tb table{width:100%;border:1px solid #ccc;}
+.inform_tb thead{background:#d8d8d8 url('../../../images/basic/bg_tit_form.gif') repeat-x left top;}
+.inform_tb thead th{padding:10px 0;border:1px solid #ccc;}
+.inform_tb td{text-align:center;}
+.inform_tb tbody th, .inform_tb tbody td{padding:5px;border-bottom:1px dashed #d8d8d8;border-right:1px dashed #d8d8d8;}
+.inform_tb tr.last th, .inform_tb tr.last td{border-bottom:none;}
+.inform_tb th.last, .inform_tb td.last{border-right:none;}
+.inform_tb td span.txt{vertical-align:middle;}
+
+/* Table Mini */
+.tb_mini{border-spacing:1px;border-collapse:separate;border:1px solid #ccc;font-size:11px;text-align:center;}
+.tb_mini th, .tb_mini td{padding:5px;background:none !important;}
+.tb_mini thead{background:#d8d8d8 url('../../../images/basic/bg_tit_form.gif') repeat-x left bottom;}
+.tb_mini tbody th, .tb_mini tbody td{border-bottom:1px dashed #d8d8d8;}
+.tb_mini tr.last th, .tb_mini tr.last td{border-bottom:none;}
+
+/* Layer Section */
+.layer_sect{z-index:999;position:absolute;padding:3px;border:1px solid #aaa;background:#fff;}
+.layer_sect.wf_acnt{display:none;top:30px;left:50px;width:450px;cursor:pointer;}
+/******************** 서식 및 공통 구성 영역 : 관제시스템과 동일 : End ********************/
+
+
+/* header_lft : logo */
+.logo{margin-top:34px;text-align:center;}
+
+
+/* header_rgt : Member Info Section, GNB */
+/* Member Info Section */
+#mem_sect, .mem_sect_box{background:#dfdfdf url('../../../images/basic/bg_mem_sect.gif') no-repeat}
+#mem_sect{float:right;height:38px;margin:0 10px 15px 0;padding-right:20px;text-align:right;background-position:right bottom;}
+.mem_sect_box{height:32px;padding:6px 0 0 20px;background-position:left bottom;}
+.mem_sect_box input.text{width:80px;height:18px;}
+.mem_sect_box label{padding:0 5px 0 8px;font-family:Arial;font-weight:bold;vertical-align:middle;color:#3b3d3e;}
+.mem_sect_box .name{font-weight:bold;vertical-align:middle;color:#3b3d3e;}
+
+/* GNB */
+#gnb{clear:both;margin-right:200px;text-align:center;}
+#gnb a:hover, #gnb .active{text-decoration:none;}
+#gnb ol{}
+#gnb li{display:inline;margin:0 10px;}
+#gnb li a{display:inline-block;height:32px;padding-left:18px;font-size:14px;font-weight:bold;color:#41464a;}
+#gnb li a span{display:inline-block;padding-top:7px;padding-right:18px;}
+#gnb li a:hover, #gnb li a:active, #gnb li .active,
+#gnb li a:hover span, #gnb li a:active span, #gnb li .active span{background:url('../../../images/basic/bg_gnb_depth01_on.gif') no-repeat}
+#gnb li a:hover, #gnb li a:active, #gnb li .active{color:#fff;background-position:left top;}
+#gnb li a:hover span, #gnb li a:active span, #gnb li .active span{height:25px;background-position:right top;}
+
+#gnb_depth02_1{display:none;position:absolute;top:85px;left:287px;}
+#gnb_depth02_2{display:none;position:absolute;top:85px;left:437px;}
+#gnb_depth02_3{display:none;position:absolute;top:85px;left:587px;}
+#gnb_depth02_4{display:none;position:absolute;top:85px;left:696px;}
+#gnb_depth02_5{display:none;position:absolute;top:85px;left:800px;}
+
+.gnb_depth02, .gnb_depth02 ol{background:#efefef url('../../../images/basic/bg_gnb_depth02.gif') no-repeat}
+.gnb_depth02{height:28px;padding-left:10px;background-position:left top;}
+.gnb_depth02 ol{height:28px;padding-right:5px;background-position:right top;}
+.gnb_depth02 ol li{margin:0 !important;padding:0 10px 0 5px;background:url('../../../images/basic/bar_gnb_depth02.gif') no-repeat right 50%;}
+.gnb_depth02 ol li.none{background:none;}
+.gnb_depth02 li a{height:20px !important;padding:8px 5px 0 5px !important;font-size:12px !important;color:#7d7d7e !important;}
+.gnb_depth02 li a:hover, .gnb_depth02 li a:active, .gnb_depth02 .active{color:#41464a !important;background:none !important;}
+
+
+/* cont_lft : snb, Aside */
+/* snb */
+#snb{padding-top:18px;line-height:150%;letter-spacing:-1px;}
+#snb a:hover, #snb .active{text-decoration:none;}
+.snb_top{padding:20px;border-bottom:2px solid #eb6a6f;font-size:23px;letter-spacing:-2px;line-height:110%;font-weight:bold;color:#727272;}
+
+#snb0101_1{display:none;}
+#snb0101_2{display:none;}
+
+#snb .depth01 li{border-bottom:1px solid #d7d7d7;}
+#snb .depth01 a{display:block;padding:8px 55px 7px 23px;font-size:14px;font-weight:bold;color:#383838;}
+#snb .depth01 a:hover, #snb .depth01 a:active, #snb .depth01 .active{color:#fff;background:#ed353c url('../../../images/basic/bg_snb_depth01_on.gif') no-repeat left top;}
+
+#snb .depth02{padding-bottom:10px;}
+#snb .depth02 li{border-bottom:none;}
+#snb .depth02 a{display:block;padding:5px 0 4px 40px;border:none;font-size:12px;font-weight:bold;color:#7d7d7e;background:url('../../../images/basic/blt_snb_depht02_off.gif') no-repeat 28px 12px;}
+#snb .depth02 a:hover, #snb .depth02 a:active, #snb .depth02 .active{display:block;color:#ee1c24;background:url('../../../images/basic/blt_snb_depht02_on.gif') no-repeat 28px 12px;}
+
+#snb .depth03{padding:10px 0;background:#fff url('../../../images/basic/bg_snb_depth03_top.gif') no-repeat left top;}
+#snb .depth03 li{border-bottom:none;}
+#snb .depth03 a{display:block;padding:3px 0 2px 40px;font-size:12px;font-weight:normal;color:#7d7d7e;background:none;}
+#snb .depth03 a:hover, #snb .depth03 a:active, #snb .depth03 .active{text-decoration:none;color:#333;background:none;}
+
+/* Aside */
+#aside{margin:25px 10px;}
+
+
+/* cont_rgt : Navigator, Contents(Title, Search Box etc..) */
+/* Navigator */
+#nav{margin:0 10px 10px 0;font-size:11px;text-align:right;color:#898989;background:#fff;}
+#nav img{margin-right:3px;vertical-align:-15%;}
+
+/* Contents : Title, Search Box etc.. */
+/* Contents Total Area */
+#contents{}
+.div_area{*zoom:1;}
+.div_area:after{content:"";clear:both;display:block;}
+
+/* Title */
+#tit_sect{height:55px;padding:13px 0 0 33px;font-size:25px;font-weight:bold;color:#41464a;background:#fff url('../../../images/basic/ico_tit.gif') no-repeat left top;}
+
+/* Sub Title */
+.sub_tit{margin-bottom:5px;padding-left:22px;font-size:14px;font-weight:bold;color:#333;background:url('../../../images/basic/ico_sub_tit.gif') no-repeat 5px 1px;}
+
+/* Process Section */
+.process_sect{margin-bottom:10px;}
+.process_sect ul{width:753px;margin:0 auto;}
+.process_sect ul li{display:inline;}
+
+/* Workflow Section */
+.wf_sect{height:230px;border:1px solid #ccc;background:#fff;}
+/* Workflow Contents */
+.content_wf{padding:10px 20px;text-align:center;}
+.content_wf img{vertical-align:top;}
+.sld_base{margin:0 auto;border-collapse:collapse;border-spacing:0;}
+/* Workflow Contents : Basic */
+.sld_base td{vertical-align:top;}
+.sld_base td img{padding:10px 5px 0 5px;}
+/* Workflow Contents : Background Basic */
+.sld_base td, .sld_base li, .sld_base ul{background:url('../../../images/common/wf/line_v.gif') no-repeat 50% top;}
+/* Workflow Contents : Start Area */
+.sld_base tr.start{background:none;}
+.sld_base tr.start td{background-repeat:repeat-y;background-position:50% bottom;}
+.sld_base tr.start img{padding:0;}
+/* Workflow Contents : Start Horisontal Line */
+.line_v_start, .line_v_start_in{height:13px;background:url('../../../images/common/wf/line_h.gif') repeat-x right bottom;}
+.line_v_start{margin:0 84px 0 83px;}
+.line_v_start_in{background-position:left bottom;}
+/* Workflow Contents : 2Depth Case */
+.h_a_basic, .sld_base ul{width:150px;}
+.h_a_basic{float:left;padding:0 10px;} 
+.h_a_basic01, .h_a_basic02{float:left;}
+.h_a_basic01 img, .h_a_basic02 img{cursor:pointer;}
+.h_a_basic01{}
+.h_a_basic02{background:url('../../../images/common/wf/line_h.gif') no-repeat 50% 10px;}
+/* Workflow Contents : List Style */
+.sld_base ul{padding-top:10px;}
+.sld_base ol li{display:block;position:relative;background-repeat:repeat-y;}
+
+/* 상황조치업무관리 : 선택 Warkflow Area */
+.wf_img_sect{height:142px;border:4px double #ccc;background:#f5f5f5;}
+.wfd_area{width:90%;margin:38px auto;}
+.wfd_area .wf_img{padding:0 20px;}
+.wfd_area .wf_txt{display:inline-block;padding-top:15px;font-weight:bold;}
+
+/* Trace Log 흐름도 Section */
+.t_log_sect{height:300px;border:1px solid #ccc;text-align:center;background:#fff;}
+.t_log_tb{width:0;margin:20px auto;border-collapse:collapse;border-spacing:0px;}
+.t_log_tb td .box_txt{overflow:hidden;width:100px;height:46px;font-size:13px;line-height:46px;font-weight:bold;color:#fff;text-align:center;cursor:help;background:url('../../../images/common/TraceImg/bg_t_log.png') no-repeat 50% 50%;}

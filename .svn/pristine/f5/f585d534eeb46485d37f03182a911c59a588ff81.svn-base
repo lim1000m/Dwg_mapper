@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.mp.dwg.objectMgt.service.ObjectInfoMapper">
+
+	<!-- Sample Table Grid 항목 조회 -->
+	<select id="selectObjectInfoGridByMap" parameterType="java.util.HashMap" resultType="egovMap">
+	SELECT aa.*
+	FROM (
+		SELECT rownum rn, a.*
+		FROM(
+			select  obj_id, obj_nm, obj_typ, obj_x, obj_y, obj_inst, '편집' as mapp_Info 
+			from dwg_gis_object
+			where 1=1
+				<if test="objTyp != null and objTyp != ''">
+		    		 and obj_typ=#{objTyp}
+		    	</if>
+		    	<if test="objNm != null and objNm != ''">
+		    		 AND UPPER(obj_nm) like '%'||UPPER(#{objNm})||'%' 
+		    	</if>
+				<if test="sidx != null and sidx != ''">
+		    		<if test="sord != null and sord != ''">
+		    			ORDER BY ${sidx} ${sord}
+		    		</if>
+		    	</if>
+		    	
+				) a
+			) aa
+		WHERE rn between ${startNum} and ${endNum}
+	</select>
+
+	<!-- 조회된 행 개수 Get -->
+	<select id="selectObjectInfoGridByMapCnt" parameterType="java.util.HashMap" resultType="int">
+		select  count(obj_id) 
+		from dwg_gis_object
+			where 1=1
+				<if test="objTyp != null and objTyp != ''">
+		    		 and obj_typ=#{objTyp}
+		    	</if>
+		    	<if test="objNm != null and objNm != ''">
+		    		 AND UPPER(obj_nm) like '%'||UPPER(#{objNm})||'%' 
+		    	</if>
+	</select>
+	
+	<!-- id로 VO 정보 조회 -->
+	<select id="getObjectInfoKey" parameterType="String" resultType="objectInfoVO">
+		SELECT obj_id, obj_nm, obj_typ, obj_x, obj_y, obj_inst, use_yn
+		    FROM dwg_gis_object
+				WHERE obj_id = #{objId}
+	</select>
+	
+	<select id="getObjectNmChk" parameterType="String" resultType="int">
+		select count(obj_id)
+		    FROM dwg_gis_object
+		        WHERE obj_nm LIKE '%' || #{objNm} || '%'
+	</select>
+	
+	<insert id="insertObject" parameterType="objectInfoVO" >
+		INSERT INTO dwg_gis_object
+			(obj_id,    obj_nm,    obj_typ,  obj_x,   obj_y, 	obj_inst,	 use_yn)
+		VALUES
+			(
+				(select DECODE(max(obj_id), null, 1, max(obj_id)+1) from dwg_gis_object),
+				#{objNm},
+				#{objTyp},
+				#{objX}, 
+				#{objY},
+				#{objInst},
+				#{useYn}
+			)
+	</insert>
+	
+	<update id="updateObject" parameterType="objectInfoVO">
+		UPDATE dwg_gis_object
+			SET obj_nm = #{objNm},
+			obj_typ = #{objTyp},
+		    obj_x = #{objX},
+		    obj_y = #{objY},
+		    use_yn = #{useYn}
+				WHERE obj_id = #{objId}
+	</update>
+
+	<select id="getObjectDelYn" parameterType="int" resultType="int">
+		SELECT count(obj_id) 
+        	from dwg_gis_mapper
+        		where obj_id = #{serNo}
+	</select>
+	<delete id="deleteObject" parameterType="int">
+		delete from dwg_gis_object
+			where obj_id = #{serNo}
+	</delete>
+
+	<!-- Sample Table Grid 항목 조회 -->
+	<select id="selectSampleTree" parameterType="int" resultType="egovMap">
+		select *
+		    from (
+		        select id, biz_sect_cd, obs_cd, name, prnt_obs_seq, DECODE(connect_by_isleaf, 0, 'Y', 'N') is_leaf
+		            from (
+		                select distinct obs_seq as id, biz_sect_cd, obs_cd, obs_nm as name, 0 as prnt_obs_seq 
+		                    from t_obs
+		                        where biz_sect_cd = '01'
+		                        and cnst_phase_seq IN (13, 14, 15)
+		                union all
+		                select distinct t1.obs_seq as id, biz_sect_cd, obs_cd, obs_nm as name, t2.line_Seq as prnt_obs_seq 
+		                    from t_obs t1, t_line_sec_site t2
+		                        where biz_sect_cd = '02'
+		                        and t1.obs_seq = t2.sec_seq
+		                        and cnst_phase_seq IN (13, 14, 15)
+		                union all
+		                select distinct t1.obs_seq as id, biz_sect_cd, obs_cd, obs_nm as name, t2.sec_Seq as prnt_obs_seq 
+		                    from t_obs t1, t_line_sec_site t2
+		                        where biz_sect_cd = '03'
+		                        and t1.obs_seq = t2.site_seq
+		                        and cnst_phase_seq IN (13, 14, 15)
+		            )
+		                connect by prior id = prnt_obs_seq
+		                start with prnt_obs_seq = 0
+		    )
+		        where prnt_obs_seq = #{prntObsSeq}
+	</select>
+</mapper>

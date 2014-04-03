@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Authors: keisus. -->
+
+<!-- Version: 1.0 -->
+
+<!-- Grid ?좎뼵???꾪븳 xml ?뺣낫 ?ㅼ젙. -->
+
+<!-- 湲곕が?뺣낫 ?ㅼ젙???꾪븳 Config ?좎뼵 -->
+<!ELEMENT Config (DataSet)*>
+	<!ELEMENT DataSet (Column)*>
+	<!ATTLIST DataSet Name CDATA #REQUIRED
+		 DataKind CDATA #REQUIRED >
+		<!ELEMENT Column (Code | Name | Type | Length | Align | Sort | Hidden | JSFunction)*>
+			<!ELEMENT Code (#PCDATA)>		<!-- DB 而щ읆 紐?-->
+			<!ELEMENT Name (#PCDATA)>		<!-- View???쒖떆???대쫫 -->
+			<!ELEMENT Type (#PCDATA)>		<!-- 議고쉶 ?좏삎 -->
+			<!ELEMENT Length (#PCDATA)>	<!-- Grid 而щ읆 ?ъ씠利?-->
+			<!ELEMENT Align (#PCDATA)>	<!-- ?뺣젹 諛⑹떇 -->
+			<!ELEMENT Sort (#PCDATA)>		<!-- ?뺣젹 ?쒖꽌 -->
+			<!ELEMENT Hidden (#PCDATA)>	<!-- ?④?/?쒖떆 ?щ? -->
+			<!ELEMENT JSFunction (FcName | FcParam | FuncCode | FuncValue)*>
+				<!ELEMENT FcName (#PCDATA)>			<!-- 蹂?섎맆 javascript function -->
+				<!ELEMENT FcParam (#PCDATA)>		<!-- ?뚮씪誘명꽣 ?뺣낫 -->
+				<!ELEMENT FuncCode (#PCDATA)>		<!-- javascript function 肄붾뱶 -->
+				<!ELEMENT FuncValue (#PCDATA)>	<!-- ?곕룞 ?곗씠??-->

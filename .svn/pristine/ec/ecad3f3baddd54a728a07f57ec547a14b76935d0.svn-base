@@ -1,0 +1,272 @@
+/*
+ * 
+ */
+package kr.mp.dwg.cmmn.util;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * The Class DateTimeUtil.
+ */
+public class DateTimeUtil {
+	
+	/**
+	 * Instantiates a new date time util.
+	 */
+	public DateTimeUtil(){
+		
+	}
+	
+	/**
+	 * 문자열을 Calendar클래스 형식으로 변환해 준다
+	 * 
+	 * @param dateTimeStr
+	 *            날짜 시간 문자열(YYYYMMDDHHmmssmmm) : 17자리 문자열
+	 * 
+	 * @return the calendar
+	 */
+	static public Calendar stringToCalendar(String dateTimeStr){
+	    Calendar cal = Calendar.getInstance();
+		try{
+			if(dateTimeStr == null || dateTimeStr.equals("") || dateTimeStr.equals(" "))
+				return null;
+			
+//			
+//			
+//			String[] dt = dateTimeStr.split("-");
+//			String[] date = dt[0].split("/");
+//			String[] time = dt[1].split(":");
+//			
+//			if(date.equals("") || date.equals(" ") ||  date==null){
+//				return null;
+//			}else {
+//				cal.set(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])
+//						, Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+//			}
+			cal.clear();
+			cal.set(Integer.parseInt(dateTimeStr.substring(0, 4)), Integer.parseInt(dateTimeStr.substring(4, 6))-1, Integer.parseInt(dateTimeStr.substring(6, 8))
+					, Integer.parseInt(dateTimeStr.substring(8, 10)), Integer.parseInt(dateTimeStr.substring(10, 12)), Integer.parseInt(dateTimeStr.substring(12, 14)));
+			//cal.set(Calendar.MILLISECOND, Integer.parseInt(dateTimeStr.substring(14, 17)));
+		}catch(Exception e){
+			COMLog.debug("DateTimeUtil::StringToCalendar : 문자열을 Calendar로 변환하면서 문제가 발생하였습니다." + e.getMessage());
+		}
+		
+		return cal;
+	}
+	
+	static public String calendarToString(Calendar cal){
+		String str = "";
+		int year, month, day, hour, min, sec, mili;
+		
+		year = cal.get(Calendar.YEAR);
+		month = cal.get(Calendar.MONTH)+1;	//1월이 0이되므로 1 더함
+		day = cal.get(Calendar.DAY_OF_MONTH);
+		hour = cal.get(Calendar.HOUR_OF_DAY);
+		min = cal.get(Calendar.MINUTE);
+		sec = cal.get(Calendar.SECOND);
+		mili = cal.get(Calendar.MILLISECOND);
+		
+		str = String.valueOf(year);
+		str += addZero(month, 2);
+		str += addZero(day, 2);
+		str += addZero(hour, 2);
+		str += addZero(min, 2);
+		str += addZero(sec, 2);
+		str += addZero(mili,3);;
+		
+		return str;
+	}
+	
+	static private String addZero(int val, int size){
+		String str = String.valueOf(val);
+		int istrSize = 0;
+		StringBuffer sb = new StringBuffer();
+		istrSize = str.getBytes().length;
+		if(size < istrSize) {
+			COMLog.debug("맞추고자 하는 길이보다 변환한 문자열의 길이가 더 커요~");
+			return "Error";
+		}
+		
+		for(int i=0; i<(size-istrSize); i++) {
+			sb.append("0");
+		}
+		str = sb.toString() + str;
+		return str;
+	}
+	
+	static public String getFormatedDateTimeString(String str, String dateSeperator, String timeSeperator){
+		return str.substring(0, 4) + dateSeperator + str.substring(4, 6) + dateSeperator + str.substring(6, 8) + " "
+			+ str.substring(8, 10) + timeSeperator + str.substring(10, 12) + timeSeperator + str.substring(12, 14);
+	}
+	
+	/**
+	 * Gets 현재 시간 문자열 반화(17자리 년월일시분초밀리초)
+	 *
+	 * @return 현재 시간 문자열
+	 * @throws Exception the exception
+	 */
+	static public String getCurDateTimeString() throws Exception{
+		String str = "";
+		Calendar cal = Calendar.getInstance();
+		try{
+			str = Integer.toString(cal.get(Calendar.YEAR))
+				+ addZero(cal.get(Calendar.MONTH),2)
+				+ addZero(cal.get(Calendar.DATE),2)
+				+ addZero(cal.get(Calendar.HOUR_OF_DAY),2)
+				+ addZero(cal.get(Calendar.MINUTE),2)
+				+ addZero(cal.get(Calendar.SECOND),2)
+				+ addZero(cal.get(Calendar.MILLISECOND),3);
+		}catch(Exception e){
+			COMLog.debug("현재 날짜를 문자열로 변경하는데 오류가 발생하였습니다. : " + e.getMessage());
+			throw e;
+		}
+		return str;
+	}
+
+	public static String calendarToString(XMLGregorianCalendar time) {
+		String str = "";
+		int year, month, day, hour, min, sec, mili;
+		
+		year = time.getYear();
+		month = time.getMonth();
+		day = time.getDay();
+		hour = time.getHour();
+		min = time.getMinute();
+		sec = time.getSecond();
+		mili = time.getMillisecond();
+		
+		str = String.valueOf(year);
+		str += addZero(month, 2);
+		str += addZero(day, 2);
+		str += addZero(hour, 2);
+		str += addZero(min, 2);
+		str += addZero(sec, 2);
+		str += addZero(mili,3);;
+		
+		return str;
+	}
+	
+	public static XMLGregorianCalendar newXMLGregorianCalendar(String dateTimeStr) throws DatatypeConfigurationException {
+		int year, month, day, hour, min, sec, mili;
+		year = Integer.parseInt(dateTimeStr.substring(0, 4));
+		month = Integer.parseInt(dateTimeStr.substring(4, 6));
+		day = Integer.parseInt(dateTimeStr.substring(6, 8));
+		hour = Integer.parseInt(dateTimeStr.substring(8, 10));
+		min = Integer.parseInt(dateTimeStr.substring(10, 12));
+		sec =  Integer.parseInt(dateTimeStr.substring(12, 14));
+		mili = Integer.parseInt(dateTimeStr.substring(14, 17));
+		
+		DatatypeFactory df = DatatypeFactory.newInstance();
+		XMLGregorianCalendar cal = df.newXMLGregorianCalendar(year, month, day, hour, min, sec, mili,  DatatypeConstants.FIELD_UNDEFINED);
+		
+		return cal;
+	}
+	
+	
+	/**
+	 * 내부에서 사용하는 시간 문자열을 포맷에 맞춰 화면용으로 변환하는 함수
+	 *
+	 * @param dateTimeStr 시간 문자열(예 20120914102980111-년월일시분초밀리초)
+	 * @param dspExpStr 리턴 받기위한 문자열 포맷
+	 * @return 문자열 포맷에 맞춰 변환된 시간 문자열
+	 * 
+	 * @description
+	 * Format 종류
+	 * G : 기원전/후
+	 * y : 년
+	 * M : 월
+	 * w : 주(년 기준)
+	 * W : 주(월 기준)
+	 * D : 일(년 기준)
+	 * d : 일(월 기준)
+	 * F : 일(월 기준 주의 몇번째 일)
+	 * E : 요일
+	 * a : 오전/오후
+	 * H : Hour of Day (0-23)
+	 * k : Hour of Day (1-24)
+	 * K : Hour in am/pm (0-11)
+	 * h : Hour of Day (1-12)
+	 * m : 분
+	 * s : 초
+	 * S : 밀리초
+	 * z : TimeZone (General Time Zone)
+	 * Z : TimeZone (RFC 822 Time Zone)
+	 */
+	public static String getLocaleDateTimeString(String dateTimeStr, String dspExpStr){
+		String rtnStr = "";
+		Calendar cal = DateTimeUtil.stringToCalendar(dateTimeStr);
+		SimpleDateFormat dateformat = new SimpleDateFormat(dspExpStr);
+		if(cal!=null)
+			rtnStr = dateformat.format(cal.getTime());
+		return rtnStr;
+	}
+	
+	public static String getFormatedDateString(String dateTimeStr, Locale locale){
+		String rtnStr = "";
+
+		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+		Calendar cal = DateTimeUtil.stringToCalendar(dateTimeStr);
+		rtnStr = dateFormat.format(cal.getTime());
+		return rtnStr;
+	}
+	
+	/**
+	 * Locale에 맞는 날짜시간 문자열 반환
+	 *
+	 * @param dateTimeStr 년월일시분초가 이어진 문자열 (예:201209031234*)
+	 * @param langCd <a href="http://www.loc.gov/standards/iso639-2/php/English_list.php">ISO-639에 정의된 언어 코드</a>
+	 * @param countryCd <a href="http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements.htm">ISO-3166에 정의된 언어 코드</a>
+	 * @return Locale에 맞게 변환된 날짜 시간 문자열
+	 */
+	public static String getDateTimeStringByLocale(String dateTimeStr, String langCd, String countryCd){
+		String rtnStr = "";
+		Locale locale = new Locale(langCd, countryCd);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, locale);
+		Calendar cal = DateTimeUtil.stringToCalendar(dateTimeStr);
+		rtnStr = dateFormat.format(cal.getTime());	
+		return rtnStr;
+	}
+	
+	/**
+	 * Locale에 맞는 날짜 문자열 반환
+	 *
+	 * @param dateTimeStr 년월일시분초가 이어진 문자열 (예:201209031234*)
+	 * @param langCd <a href="http://www.loc.gov/standards/iso639-2/php/English_list.php">ISO-639에 정의된 언어 코드</a>
+	 * @param countryCd <a href="http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements.htm">ISO-3166에 정의된 언어 코드</a>
+	 * @return Locale에 맞게 변환된 날짜 문자열
+	 */
+	public static String getDateStringByLocale(String dateTimeStr, String langCd, String countryCd){
+		String rtnStr = "";
+		Locale locale = new Locale(langCd, countryCd);
+		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+		Calendar cal = DateTimeUtil.stringToCalendar(dateTimeStr);
+		rtnStr = dateFormat.format(cal.getTime());
+		return rtnStr;
+	}
+	
+	/**
+	 * Locale에 맞는 시간 문자열 반환
+	 *
+	 * @param dateTimeStr 년월일시분초가 이어진 문자열 (예:201209031234*)
+	 * @param langCd <a href="http://www.loc.gov/standards/iso639-2/php/English_list.php">ISO-639에 정의된 언어 코드</a>
+	 * @param countryCd <a href="http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements.htm">ISO-3166에 정의된 언어 코드</a>
+	 * @return Locale에 맞게 변환된 시간 문자열
+	 */
+	public static String getTimeStringByLocale(String dateTimeStr, String langCd, String countryCd){
+		String rtnStr = "";
+		Locale locale = new Locale(langCd, countryCd);
+		DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale);
+		Calendar cal = DateTimeUtil.stringToCalendar(dateTimeStr);
+		rtnStr = dateFormat.format(cal.getTime());
+		return rtnStr;
+	}
+}

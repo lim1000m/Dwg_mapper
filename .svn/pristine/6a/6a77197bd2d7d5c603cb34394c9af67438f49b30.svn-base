@@ -1,0 +1,10 @@
+﻿/* TimeEntry styles */
+.timeEntry_control {
+	vertical-align: middle;
+	margin-left: 2px;
+	cursor:pointer;
+}
+* html .timeEntry_control { /* IE only */
+	margin-top: -4px;
+	cursor:pointer;
+}

@@ -1,0 +1,130 @@
+package kr.mp.dwg.domain;
+
+/**
+ * Class Name 	: UserVO.java
+ * Description 	: 사용자정보 도메인 객체
+ * Modification Information
+ *
+ *       수정일                         수정자             		    수정내용
+ *    -----------      -----------     	---------------------
+ *     
+ * 
+ * @author 남경일
+ * @since 2012.10.15
+ * @version 0.9
+ */
+public class UserVO{
+	String num;
+	String userId;
+	String userPswd;
+    String userNm;
+	String rpjob;
+	String hphoneNo;
+    String offcNo;
+    String email;
+	String fax;
+	String creMn;
+	String creDtm;
+	String updMn;
+	String updDtm;
+	String roleId;
+    String roleNm;
+    String suprMngrYn;  // 슈퍼관리자 여부
+	
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
+	}
+	public String getRoleNm() {
+		return roleNm;
+	}
+	public void setRoleNm(String roleNm) {
+		this.roleNm = roleNm;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getUserPswd() {
+        return userPswd;
+    }
+    public void setUserPswd(String userPswd) {
+        this.userPswd = userPswd;
+    }
+	public String getUserNm() {
+		return userNm;
+	}
+	public void setUserNm(String userNm) {
+		this.userNm = userNm;
+	}
+	public String getRpjob() {
+		return rpjob;
+	}
+	public void setRpjob(String rpjob) {
+		this.rpjob = rpjob;
+	}
+	public String getHphoneNo() {
+        return hphoneNo;
+    }
+    public void setHphoneNo(String hphoneNo) {
+        this.hphoneNo = hphoneNo;
+    }
+    public String getOffcNo() {
+        return offcNo;
+    }
+    public void setOffcNo(String offcNo) {
+        this.offcNo = offcNo;
+    }
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getFax() {
+		return fax;
+	}
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+	public String getCreMn() {
+        return creMn;
+    }
+    public void setCreMn(String creMn) {
+        this.creMn = creMn;
+    }
+    public String getCreDtm() {
+        return creDtm;
+    }
+    public void setCreDtm(String creDtm) {
+        this.creDtm = creDtm;
+    }
+    public String getUpdMn() {
+        return updMn;
+    }
+    public void setUpdMn(String updMn) {
+        this.updMn = updMn;
+    }
+    public String getUpdDtm() {
+        return updDtm;
+    }
+    public void setUpdDtm(String updDtm) {
+        this.updDtm = updDtm;
+    }
+    public String getRoleId() {
+        return roleId;
+    }
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+    public String getSuprMngrYn() {
+        return suprMngrYn;
+    }
+    public void setSuprMngrYn(String suprMngrYn) {
+        this.suprMngrYn = suprMngrYn;
+    }
+}

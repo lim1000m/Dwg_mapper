@@ -1,0 +1,115 @@
+﻿@charset "euc-kr";
+@import url('common.css');
+
+/* layout */
+html,body{height:100%;}
+body.main{min-width:980px;min-height:445px;background-color:#f4f4f4;}
+#wrap{height:100%;margin:0 10px;}
+/* Main 상단 Bar Area */
+.mt_bar_area{height:35px;margin-bottom:10px;*zoom:1;}
+.mt_bar_area:after{content:"";clear:both;display:block;}
+.bar_mem_info{float:left;width:200px;height:100%;margin-right:10px;}
+.bar_mt_src{width:auto;height:100%;}
+/* Main 다단 Area */
+#m_dv_area{min-height:400px;*zoom:1;}
+#m_dv_area:after{content:"";clear:both;display:block;}
+#src_bs{float:left;width:200px;height:100%;margin-right:10px;}
+#src_ex{float:left;width:200px;height:100%;margin-right:10px;}
+#rst_area{overflow:hidden;width:auto;height:100%;}
+#rst_top_area, #rst_bottom_area{min-height:200px;}
+#rst_top_area{overflow:hidden;position:relative;width:auto;height:50%;*zoom:1;}
+#rst_top_area:after{content:"";clear:both;display:block;}
+#rst_top_area .sect_bs{float:left;width:33%;height:100%;margin-right:0.5%;*margin-right:0.4%;}
+#rst_top_area .sect_bs.sect01{}
+#rst_top_area .sect_bs.sect02{}
+#rst_top_area .sect_bs.sect03{float:right;margin-right:0;}
+#rst_bottom_area{overflow:hidden;width:auto;height:50%;}
+#rst_bottom_area #data_lst_area{}
+
+
+/* Box : Basic */
+.box_bs, .box_bs_in{height:100%;background:#fff url(../images/common/bg_box_bs.gif) no-repeat;}
+.box_bs{overflow:hidden;position:relative;padding-left:2px;background-position:left bottom;}
+.box_bs_in{padding-right:2px;background-position:right bottom;}
+/* Box : Basic : Title */
+.box_bs_tit_out{position:absolute;top:0;left:0;width:100%;}
+.box_bs_tit, .box_bs_tit_in{overflow:hidden;position:relative;height:29px;background:url(../images/common/bg_box_bs_tit.gif) no-repeat;}
+.box_bs_tit{padding-left:15px;}
+.box_bs_tit_in{background-position:right top;}
+.box_bs_tit.arco{background-position:-2px bottom;}
+.box_bs_tit.arco .box_bs_tit_in{background-image:none;}
+.box_bs_tit_in .txt_tit{padding:10px 0 0 10px;font-weight:bold;background:url(../images/common/blt_gray.png) no-repeat left 12px;}
+.box_bs_tit_in .opt_area{position:absolute;right:5px;top:6px;}
+.box_bs_tit_in .opt_area.form{right:7px;top:10px;*top:8px;font-size:11px;letter-spacing:-1px !important;}
+/* Box : Basic : Content */
+.box_bs .box_bs_cnt{padding-top:29px;}
+.box_bs .cnt{overflow:auto;white-space:nowrap;}
+.box_bs .cnt_in{padding:10px;}
+
+
+/* Bar : Basic */
+.bar_bs, .bar_bs_in{overflow:hidden;height:35px;background:url(../images/common/bg_bar_bs.gif) no-repeat;}
+.bar_bs{position:relative;padding-left:20px;background-position:left top;}
+.bar_bs_in{background-position:right top;}
+/* Bar : Basic : Title */
+.bar_bs .tit_area{padding-top:11px;}
+.bar_bs .tit_area span{padding:2px 0 0 20px;font-weight:bold;color:#83cbff;background:url(../images/common/ico_bar_tit_src.png) no-repeat left top;}
+/* Bar : Basic : Search Area */
+.bar_bs .form_src{position:absolute;top:8px;*top:7px;right:20px;color:#fff;}
+.bar_bs .form_src input[type=text], .bar_bs .form_src select{height:19px;}
+/* Bar : Basic : Search Area :detail */
+label.ipt_nm{padding-right:4px;font-weight:bold;vertical-align:-1px;}
+.bar_bs .form_src .dv01{position:relative;top:1px;right:15px;padding:1px 15px 0 0;background:url(../images/common/bar_bs_dv_bar.gif) no-repeat right top;}
+.bar_bs .form_src .dv02{position:relative;top:1px;*top:0;left:8px;*left:5px;padding-right:8px;*padding-right:5px;}
+
+/* bar_mem_info : 상세 */
+.bar_mem_info .bar_bs{padding-left:2px;}
+.bar_mem_info .bar_bs .tit_area span{padding-top:3px;background-image:url(../images/common/ico_bar_tit_mem.png);}
+/* 자료검색 : 상세 */
+.bar_dt_src{margin:10px 0;}
+
+/*서식 추가:김수정130621*/
+.cont_pop{padding:10px;}
+.inform{margin:10px 0;}
+.inform legend span{margin-left:10px; padding-left:10px; font-weight:bold; color:#85b700; background: url('../images/common/blt_dot.gif') no-repeat left 3px;}
+.subtit_pop{padding:10px 0 5px 10px; font-weight:bold; background: url('../images/common/blt_gray.png') no-repeat left 12px;}
+
+.form_list{width:100%; margin:5px 0; color:#555; border-spacing:0; border-top:2px solid #777; border-left:1px solid #d1d1d1;}
+.form_list.tb_bs{margin-top:0;border-top:0;}
+.form_list.tb_in_li td{padding:0 !important;}
+.form_list tr.row02{background-color:#f6ffcc !important;}
+.form_list th, .form_list td{padding:5px 10px; border-right:1px solid #ccc; border-bottom:1px solid #ccc;}
+.form_list.tb_in_li td{border-bottom:3px double #bbb;}
+.form_list th{width:120px; padding:8px 10px; text-align:left; background-color:#dfdfdf;}
+.form_list.tb_bs th{text-align:center;}
+.form_list td.sub_head{font-weight:bold;background-color:#efefef;}
+.form_list td input{margin:2px 0;}
+.form_list td input[type=text]{width:80%;}
+.form_list td input.cal{width:70px;}
+.form_list td textarea{height:100px;}
+
+/*확장검색영역추가:김수정130725*/
+.box_search_det{width:180px;margin:0 auto;}
+.box_search_det table{width:100%;margin:5px 0; border-collapse:collapse; border:1px solid #e0e4e8;}
+.box_search_det table tr th{min-width:40px;text-align:left; color:#468847;}
+.box_search_det table tr th span{padding-left:9px; background:url('../images/common/blt_green.gif') no-repeat 3px 3px;}
+.box_search_det table tr th, .box_search_det table tr td{padding:5px; border-bottom:1px solid #e0e4e8; }
+.box_search_det table tr.odd th,.box_search_det table tr.odd td{background:#f7f8f9;}
+.box_search_det select{width:90%;}
+.box_search_det select.type_top{width:180px; margin:3px auto; background:#f7f8f9;}
+.box_search_det table input[type=text]{width:35px; margin-top:3px;}
+
+.box_search_viewer{width:100%;}
+.box_search_viewer table{width:100%;margin:5px 0; border-collapse:collapse; border:1px solid #e0e4e8;}
+.box_search_viewer table tr th{min-width:40px;text-align:left; color:#468847;}
+.box_search_viewer table tr th span{padding-left:9px; background:url('../images/common/blt_green.gif') no-repeat 3px 3px;}
+.box_search_viewer table tr th, .box_search_viewer table tr td{padding:5px; border-bottom:1px solid #e0e4e8; }
+.box_search_viewer table tr.odd th,.box_search_viewer table tr.odd td{background:#f7f8f9;}
+.box_search_viewer select{width:90%;}
+.box_search_viewer select.type_top{width:180px; margin:3px auto; background:#f7f8f9;}
+.box_search_viewer table input[type=text]{width:35px; margin-top:3px;}
+
+/*종면도 도면목록*/
+ul.um_item{}
+ul.um_item li{overflow:hidden;height:18px;padding:6px 5px 2px 5px;border-bottom:none solid #FFFFFF;}
+ul.um_item li input[type=checkbox]{}

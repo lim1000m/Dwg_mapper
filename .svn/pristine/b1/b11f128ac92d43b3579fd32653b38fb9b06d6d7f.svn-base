@@ -1,0 +1,133 @@
+package kr.mp.dwg.cmmn.util;
+
+import org.apache.log4j.Logger;
+
+/**
+ * Class Name 	: COMLog
+ * Description 	: 전체 시스템에서 공통으로 사용되는 로그
+ * Modification Information
+ *
+ *       수정일                         수정자             		    수정내용
+ *    -----------      -----------     	---------------------
+ *     2012.05.24             이진형                      Exception의 printStackTrace를 대체하기 위한 함수 추가
+ * 
+ * @author 차근수
+ * @since 2010.10.18
+ * @version 1.0
+ */
+public class COMLog {
+	
+	/** logger static 변수 선언*/
+	private static Logger logger;
+	
+	/**
+	 * 콘솔 개발 디버그시( 일반 메시지 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param msg
+	 */
+	public static void debug(String msg){
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.debug(msg);		
+	}
+	
+	/**
+	 * 콘솔 개발 디버그시( 일반 메시지 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param msg
+	 */
+	public static void debug(int msg){
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.debug(msg);
+	}
+	
+	/**
+	 * 콘솔 개발 디버그시( 클래스명 및 일반 메시지 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param msg
+	 */
+	public static void debug(Object obj, String msg){
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.debug("[" + obj.getClass().getName() + "] " + msg);		
+	}
+	
+	/**
+	 * 콘솔 개발 디버그시( 클래스명 및 일반 메시지 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param msg
+	 */
+	public static void debug(Object obj, int msg){
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.debug("[" + obj.getClass().getName() + "] " + msg);
+	}
+	
+	/**
+	 * 콘솔에 INFO 정보 출력 
+	 * log4j.properties 의 consoleInfo logger
+	 * @param msg
+	 */
+	public static void info(String msg){
+		logger = Logger.getLogger("COMConsole");
+
+		logger.info("[ == " + msg + " == ]");
+	}
+	
+	/**
+	 * 콘솔 개발 디버그시( 클래스명 및 일반 메시지 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param msg
+	 */
+	public static void error(Object obj, String msg){
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.error("[" + obj.getClass().getName() + "] " + msg);
+	}
+	
+	/**
+	 * 콘솔 개발 디버그시( 클래스명 및 일반 메시지 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param msg
+	 */
+	public static void error(String msg){
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.error("[" + msg +  "] ");
+	}
+
+	/**
+	 * 콘솔 개발 디버그시( Exception Stack Trace 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param Exception
+	 */
+	public static void error(Exception e){
+		StackTraceElement[] elemList = e.getStackTrace();
+		String msg = e.getMessage();
+		for(int i=0; i<elemList.length; i++){
+			StackTraceElement elem = elemList[i];
+			msg += "\nat " + elem.getClassName() + "." + elem.getMethodName() + " (" + elem.getFileName() + ":" + elem.getLineNumber() +")";
+		}
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.error("[" + msg +  "] ");
+	}
+	
+	/**
+	 * 콘솔 개발 디버그시( Exception Stack Trace 출력 )
+	 * log4j.properties 의 consoleDebug logger
+	 * @param Exception
+	 */
+	public static void debug(Exception e){
+		StackTraceElement[] elemList = e.getStackTrace();
+		String msg = e.getMessage();
+		for(int i=0; i<elemList.length; i++){
+			StackTraceElement elem = elemList[i];
+			msg += "\nat " + elem.getClassName() + "." + elem.getMethodName() + " (" + elem.getFileName() + ":" + elem.getLineNumber() +")";
+		}
+		logger = Logger.getLogger("COMConsole");
+		
+		logger.error("[" + msg +  "] ");
+	}
+}

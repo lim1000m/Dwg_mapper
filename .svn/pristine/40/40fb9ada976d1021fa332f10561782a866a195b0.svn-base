@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.mp.dwg.searchDwg.service.DwgMapper">
+
+
+	<!-- EEAM 도면  정보 검색 -->
+	<select id="getDwgKeyInfo" parameterType="String" resultType="DwgMappVO">
+		select drwng_serno,drwng_nm,group_cd from eeam_drwng_tbl where drwng_serno=#{dwgId}
+	</select>
+	
+	<!-- EEAM 도면 차트 생성 Script -->
+	<select id="getDwgScript" parameterType="java.util.HashMap" resultType="DwgVO">
+		select * from eeam_group_tbl
+			where group_lvl = #{groupLvl}   and dvsn_cd=#{dvsnCd} and prnt_group_serno = #{prntGroupSerno}
+			            order by group_ord asc
+	</select>
+	
+	<!-- EEAM 도면  종류 리스트 -->
+	<select id="getDwgKndList"  resultType="dwgKndVO">
+		select cm_cd,cm_nm from EEAM_COMMON_CD_TBL where type_cd=160
+	</select>
+	
+	<!-- DWG GIS MAPPER 도면 등록 -->
+	<insert id="dwgAdd" parameterType="dwgMappVO" >
+		INSERT INTO DWG_GIS_MAPPER
+                    (obj_id, mp_dwg_serno, mp_dwg_nm ,mp_group_cd)
+        VALUES      (#{objId}, #{drwngSerno}, #{drwngNm}, #{groupCd})
+	</insert>
+
+	<!-- DWG GIS MAPPER 도면  삭제 -->
+	<delete id="dwgDelete" parameterType="int">
+		 DELETE  FROM DWG_GIS_MAPPER 
+		 WHERE  mp_dwg_serno = #{mpDwgSerno}
+	</delete>
+	
+	<!-- EEAM 도면 차트  목록 및 검색  -->
+	<select id="selectMappDwgGridByMap" parameterType="java.util.HashMap" resultType="egovMap">
+	SELECT aa.* 
+        FROM (
+            SELECT  rownum rn, a.* 
+            FROM (select B.DRWNG_SERNO,GROUP_CD, DRWNG_NM  from eeam_drwng_tbl A, (select drwng_serno from eeam_group_drwng_tbl a, (select a.group_serno ,a.group_serno as lvl4, b.lvl3,b.lvl2, b.lvl1  from (select prnt_group_serno, group_serno from eeam_group_tbl  where group_lvl = '4'   and dvsn_cd='CI')  a,
+					(select a.group_serno, a.prnt_group_serno,a.group_serno as lvl3, b.lvl2,lvl1  from (select prnt_group_serno, group_serno from eeam_group_tbl  where group_lvl = '3'   and dvsn_cd='CI')  a,
+					    (select a.group_serno, a.group_serno as lvl2, b.group_serno as lvl1  from (select prnt_group_serno, group_serno from eeam_group_tbl  where group_lvl = '2'   and dvsn_cd='CI')  a,
+					                      (select group_serno, prnt_group_serno as lvl1 from eeam_group_tbl where group_lvl = '1'   and dvsn_cd='CI' and prnt_group_serno = '0') b where a.prnt_group_serno=b.group_serno)b  where a.prnt_group_serno=b.group_serno)b
+					                                            where a.prnt_group_serno=b.group_serno) b
+					                                            where a.group_serno=b.group_serno
+					                                            <if test='groupLvl == 1 and groupLvl!=null and groupLvl!=""'>
+                                                                 and lvl1=#{groupSerno}
+                                                                </if>
+                                                                <if test='groupLvl == 2 and groupLvl!=null and groupLvl!=""'>
+                                                                 and lvl2=#{groupSerno}
+                                                                </if>
+                                                                <if test='groupLvl == 3 and groupLvl!=null and groupLvl!=""'>
+                                                                 and lvl3=#{groupSerno}
+                                                                </if>
+                                                                <if test='groupLvl == 4 and groupLvl!=null and groupLvl!=""'>
+                                                                 and lvl4=#{groupSerno}
+                                                                </if> ) B
+					                                            where A.drwng_serno=B.drwng_serno
+					                                            <if test='dwgNm !=null and dwgNm !=""'>
+                                                                 AND UPPER(DRWNG_NM) like '%'||UPPER(#{dwgNm})||'%' 
+                                                                </if>
+                                                                <if test='dwgKnd !=null and dwgKnd !=""'>
+                                                                 and drwng_kind=#{dwgKnd}
+                                                                </if>
+                                                                AND A.drwng_serno  not in (SELECT mp_dwg_serno FROM dwg_gis_mapper where obj_id=#{mpDwgSerno} ) order by DRWNG_SERNO asc ) a )aa
+					                                            
+					                                            WHERE rn between ${startNum} and ${endNum}
+
+	</select>
+
+	<!-- EEAM 도면 차트 조회된 행 개수 Get -->
+	<select id="selectMappDwgGridByMapCnt" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from eeam_drwng_tbl A, (select drwng_serno from eeam_group_drwng_tbl a, (select a.group_serno ,a.group_serno as lvl4, b.lvl3,b.lvl2, b.lvl1  from (select prnt_group_serno, group_serno from eeam_group_tbl  where group_lvl = '4'   and dvsn_cd='CI')  a,
+(select a.group_serno, a.prnt_group_serno,a.group_serno as lvl3, b.lvl2,lvl1  from (select prnt_group_serno, group_serno from eeam_group_tbl  where group_lvl = '3'   and dvsn_cd='CI')  a,
+    (select a.group_serno, a.group_serno as lvl2, b.group_serno as lvl1  from (select prnt_group_serno, group_serno from eeam_group_tbl  where group_lvl = '2'   and dvsn_cd='CI')  a,
+                      (select group_serno, prnt_group_serno as lvl1 from eeam_group_tbl where group_lvl = '1'   and dvsn_cd='CI' and prnt_group_serno = '0') b where a.prnt_group_serno=b.group_serno)b  where a.prnt_group_serno=b.group_serno)b
+                                            where a.prnt_group_serno=b.group_serno) b
+                                            where a.group_serno=b.group_serno
+                                            <if test='groupLvl == 1 and groupLvl!=null and groupLvl!=""'>
+                                             and lvl1=#{groupSerno}
+                                            </if>
+                                            <if test='groupLvl == 2 and groupLvl!=null and groupLvl!=""'>
+                                             and lvl2=#{groupSerno}
+                                            </if>
+                                            <if test='groupLvl == 3 and groupLvl!=null and groupLvl!=""'>
+                                             and lvl3=#{groupSerno}
+                                            </if>
+                                            <if test='groupLvl == 4 and groupLvl!=null and groupLvl!=""'>
+                                             and lvl4=#{groupSerno}
+                                            </if> ) B
+                                            where A.drwng_serno=B.drwng_serno
+                                            <if test='dwgNm !=null and dwgNm !=""'>
+                                              AND UPPER(DRWNG_NM) like '%'||UPPER(#{dwgNm})||'%' 
+                                             </if>
+                                             <if test='dwgKnd !=null and dwgKnd !=""'>
+                                              and drwng_kind=#{dwgKnd}
+                                             </if>
+                                             AND A.drwng_serno  not in (SELECT mp_dwg_serno FROM dwg_gis_mapper where obj_id=#{mpDwgSerno})
+	</select>
+	<!-- 도면 결과 검색 -->
+	<select id="searchDwg" parameterType="java.util.HashMap" resultType="egovMap">
+		SELECT aa.*
+		FROM
+			(SELECT rownum rn, a.*
+			FROM
+				(SELECT map.obj_id, obj.obj_nm, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, obj.obj_x, obj.obj_y, obj.obj_typ
+          		 FROM dwg_gis_mapper map, dwg_gis_object obj,
+                 	(SELECT DISTINCT (dwg.DRWNG_SERNO)
+                  	 FROM eeam_drwng_tbl dwg,
+	                  <if test="searchType == 'txt'">
+                      	<![CDATA[
+	                       (SELECT drwng_serno
+	                        FROM eeam_drwng_index_tbl
+	                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj ]]>
+	                  </if>
+					  <if test="searchType == 'lay'">
+				   	  	<![CDATA[
+	                       (SELECT drwng_serno
+	                        FROM eeam_drwng_layer_tbl
+	                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj ]]>
+	                  </if>
+	   	              <if test="searchType == 'sym'">
+  				   	  	<![CDATA[
+	                       (SELECT drwng_serno
+	                        FROM eeam_drwng_symbol_tbl
+	                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj ]]>
+	                  </if>
+                  	WHERE DWG.DRWNG_SERNO = obj.drwng_serno) drwng
+         		WHERE map.obj_id = obj.obj_id
+   		    		 AND drwng.drwng_serno = map.mp_dwg_serno
+				) a
+		<if test="dwgOrd != '' and dwgOrd != null">
+			order by #{dwgOrd}
+		</if>
+		) aa
+		where rn between ${startNum} and ${endNum}
+	</select>
+	
+	<!-- 도면 검색 갯수-->
+	<select id="searchDwgCnt" parameterType="java.util.HashMap" resultType="int">
+	SELECT COUNT(*)
+  	FROM (SELECT map.obj_id,   map.mp_dwg_serno,   map.mp_dwg_nm,
+   	             map.mp_group_cd,   obj.obj_x,    obj.obj_y,      obj.obj_typ
+          FROM dwg_gis_mapper map,
+               dwg_gis_object obj,
+                 (SELECT DISTINCT (dwg.DRWNG_SERNO)
+                  FROM eeam_drwng_tbl dwg,
+                  <if test="searchType == 'txt'">
+                  	<![CDATA[
+                       (SELECT drwng_serno
+                        FROM eeam_drwng_index_tbl
+                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj ]]>
+                  </if>
+				  <if test="searchType == 'lay'">
+				  	<![CDATA[
+                       (SELECT drwng_serno
+                        FROM eeam_drwng_layer_tbl
+                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj ]]>
+                  </if>
+   	             <if test="searchType == 'sym'">
+   	             	<![CDATA[
+                       (SELECT drwng_serno
+                        FROM eeam_drwng_symbol_tbl
+                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj ]]>
+                  </if>
+                  WHERE DWG.DRWNG_SERNO = obj.drwng_serno) drwng
+         WHERE map.obj_id = obj.obj_id
+   		     AND drwng.drwng_serno = map.mp_dwg_serno
+         ) 
+	</select>
+	
+	<select id="getDrwngList" parameterType="java.util.HashMap" resultType="int">
+	   	             	<![CDATA[
+	SELECT COUNT(dwg.DRWNG_SERNO)
+                  FROM eeam_drwng_tbl dwg,
+                       (SELECT drwng_serno
+                        FROM eeam_drwng_index_tbl
+                        WHERE DBMS_LOB.INSTR (drwng_index,  #{keyWord},   1,     1) <> 0) obj 
+                  WHERE DWG.DRWNG_SERNO = obj.drwng_serno
+                         ]]>
+	</select>
+	
+		<!-- 도면 검색 갯수-->
+	<select id="getDrwngTest" parameterType="java.util.HashMap" resultType="int">
+	SELECT COUNT(*)
+  	FROM (SELECT map.obj_id,   map.mp_dwg_serno,   map.mp_dwg_nm,
+   	             map.mp_group_cd,   obj.obj_x,    obj.obj_y,      obj.obj_typ
+          FROM dwg_gis_mapper map,
+               dwg_gis_object obj
+         WHERE map.obj_id = obj.obj_id
+         ) 
+	</select>
+</mapper>

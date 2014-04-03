@@ -1,0 +1,39 @@
+package kr.mp.dwg.cmmn.util;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+
+public class InitServlet extends HttpServlet {
+	private static final long serialVersionUID = 8164353195690736440L;
+	
+	private static String gridPath = "";
+	
+	public void init(ServletConfig config) throws ServletException{
+		super.init(config);
+		String prefix =  getServletContext().getRealPath("/");
+		//String gridConfigFile = getInitParameter("dataConfigFile");
+		String dwgConfigFile = getInitParameter("dwgConfigFile");
+		InputStream is = null;
+		WebApplicationContextUtil.setServletContext(config.getServletContext());
+		try {
+			//gridPath = prefix + gridConfigFile;
+//			is = new FileInputStream(prefix + dwgConfigFile);
+			is = new FileInputStream(dwgConfigFile);
+			Properties prop = new Properties();
+			prop.load(is);
+			InitDwgSys g = new InitDwgSys(prop);
+			g.setConfigFileName(/*prefix + */dwgConfigFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*public String getGridPath(){
+		return gridPath;
+	}*/
+}

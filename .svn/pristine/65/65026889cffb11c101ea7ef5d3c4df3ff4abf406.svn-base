@@ -1,0 +1,110 @@
+package kr.mp.dwg.searchDwg.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.management.ReflectionException;
+
+import kr.mp.dwg.domain.DwgKndVO;
+import kr.mp.dwg.domain.DwgMappVO;
+import kr.mp.dwg.domain.search.Response;
+
+
+/**
+ * 
+ * @className DwgService
+ * @author 김영훈
+ * @since 2012. 8. 23.
+ * @version 1.0
+ * @comment 
+ *   도면 검색을 위한 Service Class 
+ * @Modification Information  
+ * 
+ *       수정일        수정자                    수정내용
+ *     ----------   ---------   -------------------------------
+ *  
+ * 
+ * 
+ *  Copyright (C) by ESE All right reserved.
+ */
+public interface DwgService {
+	
+    /**
+     * 
+     * @methodName : getSearchDwgList
+     * @author 김영훈
+     * @since 2012. 8. 23.
+     * @comment 
+     *   도면 객체 검색
+     * @return Response
+     * @throws ReflectionException 
+     */
+	public Response getSearchDwg(HashMap<String, Object> map) throws ReflectionException;
+	
+	/**
+	 * @methodName : createScript
+     * @author 박용택
+     * @since 2013. 12. 23.
+     * @comment
+	 * 도면 등록 차트 스크립트 정보 
+	 * @return
+	 */
+	public String createScript();
+	
+	/**
+	 * @methodName : createScript
+     * @author 박용택
+     * @since 2013. 12. 23.
+     * @comment
+	 * 도면 등록
+	 * @param dwgMappList
+	 * @return
+	 * @throws Exception
+	 */
+	public int dwgAdd(List<DwgMappVO> dwgMappList) throws Exception;
+	
+	/**
+	 * @methodName : createScript
+     * @author 박용택
+     * @since 2013. 12. 23.
+     * @comment
+	 * 도면 삭제
+	 * @param mpDwgSerno
+	 * @return
+	 * @throws Exception
+	 */
+	public int dwgDelete(int mpDwgSerno) throws Exception;
+	
+	/**
+	 * @methodName : selectMappDwgList
+     * @author 박용택
+     * @since 2013. 12. 23.
+     * @comment
+	 * 도면 등록 그리드 목록
+	 * @param searchList
+	 * @return
+	 */
+	public Object[] selectMappDwgList(HashMap<String, Object> searchList);
+	
+	/**
+	 * @methodName : getDwgKeyInfo
+     * @author 박용택
+     * @since 2013. 12. 23.
+     * @comment
+	 * 도면 정보
+	 * @param dwgId
+	 * @return
+	 */
+	public DwgMappVO getDwgKeyInfo(String dwgId);
+	
+	/**
+	 * @methodName : getDwgKndList
+     * @author 박용택
+     * @since 2013. 12. 23.
+     * @comment
+	 * 도면 종류
+	 * @return
+	 */
+	public List<DwgKndVO> getDwgKndList();
+	
+}

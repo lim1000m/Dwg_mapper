@@ -1,0 +1,64 @@
+﻿@charset "utf-8";
+
+/* -- Button Reset -- */
+span.button,
+span.button a,
+span.button button,
+span.button input {position:relative; margin:0; display:inline-block; text-decoration:none !important; border:0; font-size:12px; white-space:nowrap; background:url(../../../images/basic/btnbgGray.png) no-repeat; vertical-align:middle; overflow:visible; color:#3b3d3e;}
+span.button {height:24px; padding:0; margin-right:2px; background-position:left -35px; overflow:visible;}
+span.button a,
+span.button button,
+span.button input{left:2px; *vertical-align:top; _vertical-align:middle;}
+span.button.h30 {height:30px; background-position:left top;}
+span.button.h22 {height:22px; background-position:left -64px;}
+span.button.h19 {height:19px; background-position:left -91px;}
+span.button.h17 {height:17px; background-position:left -115px;}
+
+
+/* Anchor */
+span.button a {padding:6px 11px 6px 8px; *padding:4px 10px 7px 8px; font-size:12px; line-height:12px; background-position:right -35px;}
+span.button.h30 a{padding:7px 11px 6px 8px; *padding:5px 10px 9px 8px; _top:-1px; font-size:16px; line-height:16px; background-position:right top;}
+span.button.h22 a{padding:5px 11px 6px 8px; *padding:4px 10px 7px 8px; background-position:right -64px;}
+span.button.h19 a {padding:4px 7px 3px 4px; *padding:2px 6px 5px 4px; font-size:11px; line-height:11px; background-position:right -91px; _top:-1px;}
+span.button.h17 a {padding:3px 7px 3px 4px; *padding:2px 6px 5px 4px; font-size:11px; line-height:11px; background-position:right -115px; _top:-1px;}
+
+
+/* Button & Input */
+span.button button,
+span.button input{height:24px; padding:0 10px 0 8px; font-size:12px; line-height:24px; background-position:right -35px; cursor:pointer;}
+span.button.h30 button,
+span.button.h30 input{height:30px; padding:0 10px 0 8px; font-size:16px; line-height:30px; background-position:right top;}
+span.button.h22 button,
+span.button.h22 input{height:22px; padding:0 10px 0 8px; font-size:20px; line-height:36px; background-position:right -64px;}
+span.button.h19 button,
+span.button.h19 input{height:19px; padding:0 6px 0 4px; font-size:11px; line-height:18px; background-position:right -91px;}
+span.button.h17 button,
+span.button.h17 input{height:17px; padding:0 6px 0 4px; font-size:11px; line-height:18px; background-position:right -115px;}
+
+/* Color */
+span.button *:hover,
+span.button *:active,
+span.button *:focus{color:#3b3d3e;}
+span.button.gray,
+span.button.gray a,
+span.button.gray button,
+span.button.gray input{background-image:url(../images/button/btnbgDpGray.png); color:#fff; font-weight:bold;}
+span.button.gray *:hover,
+span.button.gray *:active,
+span.button.gray *:focus{color:#fff;}
+span.button.olvGreen,
+span.button.olvGreen a,
+span.button.olvGreen button,
+span.button.olvGreen input{background-image:url(../images/button/btnbgOlvGreen.png); color:#fff; font-weight:bold;}
+span.button.olvGreen *:hover,
+span.button.olvGreen *:active,
+span.button.olvGreen *:focus{color:#56595a;}
+span.button.flGreen,
+span.button.flGreen a,
+span.button.flGreen button,
+span.button.flGreen input{background-image:url(../images/button/btnbgFlGreen.png); color:#fff; font-weight:bold;}
+span.button.flGreen *:hover,
+span.button.flGreen *:active,
+span.button.flGreen *:focus{color:#56595a;}
+
+.bold{font-weight:bold !important;}

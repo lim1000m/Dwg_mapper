@@ -1,0 +1,72 @@
+
+#\uD0C0\uC774\uD2C0
+tit.mapp.info.mgt=Mapping InforMation Managerment
+tit.obj.info.mgt=Object InforMation Managerment
+tit.dwg.info.mgt=Drawing InforMation Managerment
+tit.obj.info.mgt.reg=Object InforMation Managerment (Create)
+tit.obj.info.mgt.upd=Object InforMation Managerment (Update)
+
+#\uC124\uC815 \uBC84\uD2BC
+btn.add=Add
+btn.create=Create
+btn.update=Update
+btn.delete=Delete
+btn.cancle=Cancle
+btn.dwgView=Detail View
+
+#\uB2E8\uC5B4
+words.dwg.mgt.register=Drawing Managerment (Create)
+btn.wnd.cls=Close Window
+words.serc.cond.input.form=Search Condition Input Form
+words.serc.cond=Search Condition 
+words.srch=Search
+btn.hrnk.list=High List
+words.cnt=Case
+words.totl.srch.cnt=Total Count by Search :
+words.obj.info=Object Information
+words.obj.id=Object Id
+words.obj.nm=Object Name
+words.obj.typ=Object Typ
+words.use.yn=Use Yes or No
+words.x.Coordinates=X Coordinates
+words.y.Coordinates=Y Coordinates
+words.dwg.knd=Drawing Kind
+words.dwg.nm=Drawing Name
+
+words.totl=Whole
+words.sel=Selection
+words.dwg.chart=Drawing Chart
+words.dwg.list=Drawing List
+words.loading=Loading
+
+msg.notSel=The selected items.
+sentence.want.del=Are you sure you want to delete?
+msg.alert.success.create=Has been created.
+msg.alert.success.update=Has been updated.
+msg.alert.success.delete=Has been deleted.
+
+tit.dwg.info=Drawing Information
+words.reg.date=Date of Registration
+words.dwg.no=Drawing Numbers
+words.dwg.group.cd=Drawing Group Code
+
+sentence.relv.data.notdel.msg=[ERROR] Relative Data are exist! Can not Delete!
+sentence.obj.typ.sel=Select Object Type
+sentence.obj.nm.input=Input Object Name.
+sentence.obj.x.input=Input X Coordinates
+sentence.obj.y.input=Input Y Coordinates
+
+sentence.obj.nm.dup.msg=Object Name is already exist
+sentence.mnu.url.asgn.msg=There is no assigned menu url ID: 
+
+words.building=building
+words.road=road
+words.land=land
+
+words.dwgView=Flow Plan View
+
+sentence.user.id.msg=User id is not exist
+sentence.pwd.input.msg=Input Password
+sentence.input.pswd.msg=Wrong Password Inputed
+words.esq=
+words.logout=Log Out

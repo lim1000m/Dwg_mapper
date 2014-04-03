@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.mp.dwg.mapperMgt.service.MapperMgtMapper">
+
+	<!-- 도면 오브젝트 검색 결과 -->
+	<select id="getDwgInfoByObject" parameterType="java.util.HashMap" resultType="egovMap">
+		SELECT aa.* 
+		FROM (
+			SELECT  rownum rn, a.* 
+			FROM (
+				select map.obj_id, obj.obj_nm, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, obj.obj_typ, obj.obj_x, obj.obj_y 
+				from dwg_gis_mapper map, dwg_gis_object obj
+				where obj.obj_id = map.obj_id
+				<if test="objList != null and objList != ''">
+					and map.obj_id in 
+					<foreach collection="objList" item="obj" separator="," open="(" close=")">
+						#{obj.objId}	
+					</foreach>
+				</if>
+			) a
+			<if test="dwgOrd != null and dwgOrd != ''">
+				order by ${dwgOrd}
+			</if>
+		) aa
+	</select>
+	
+	<!-- 도면 오브젝트 카운트 -->
+	<select id="getDwgInfoByObjectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT  count(a.obj_id) 
+		FROM (
+			select map.obj_id, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, obj.obj_typ, obj.obj_x, obj.obj_y 
+			from dwg_gis_mapper map, dwg_gis_object obj
+			where obj.obj_id = map.obj_id
+			<if test="ObjectID != null and ObjectID != null">
+				and map.obj_id = #{ObjectID}
+			</if>
+			<if test="objList != null and objList != ''">
+				and map.obj_id in 
+				<foreach collection="objList" item="obj" separator="," open="(" close=")">
+					#{obj.objId}	
+				</foreach>
+			</if>
+		) a
+	</select>
+	
+	<!-- 도면 매퍼 카운트 검색 -->
+	<select id="getDwgInfoByObjectCnt" parameterType="java.util.HashMap" resultType="int">
+		select  count(*)
+		from dwg_gis_mapper
+		where obj_id = #{ObjectID} 
+	</select>
+	
+	<!-- 도면 오브젝트 카운트 -->
+	<select id="getObjectIdCnt" parameterType="java.util.HashMap" resultType="int">
+		select  count(obj_id) 
+		from dwg_gis_object
+		<where>
+			<if test="xMinCoord != null and yMaxCoord != null">
+				and obj_x between ${xMinCoord} and  ${xMaxCoord} and obj_y between ${yMinCoord} and ${yMaxCoord}
+			</if>
+			<if test="xCoord != null and yCoord != null">
+				and obj_x =  ${xCoord} and obj_y = ${yCoord}
+			</if>
+			<if test="ObjectID != null and ObjectID != ''">
+				and obj_id = #{ObjectID}
+			</if>
+			<if test="objTyp != null and objTyp != ''">
+				and obj_typ = #{objTyp}
+			</if>
+		</where>
+		order by ${objOrd}
+	</select>
+	
+	<!-- 도면 오브젝트 검색 -->
+	<select id="getObjectId" parameterType="java.util.HashMap" resultType="egovMap">
+	SELECT aa.*
+	FROM (
+		SELECT rownum rn, a.*
+		FROM(
+			select  obj_id, obj_nm, obj_typ, obj_x, obj_y 
+			from dwg_gis_object
+			<where>
+				<if test="xMinCoord != null and yMaxCoord != null">
+					and obj_x between ${xMinCoord} and  ${xMaxCoord} and obj_y between ${yMinCoord} and ${yMaxCoord}
+				</if>
+				<if test="xCoord != null and yCoord != null">
+					and obj_x =  ${xCoord} and obj_y = ${yCoord}
+				</if>
+				<if test="ObjectID != null and ObjectID != ''">
+					and obj_id = #{ObjectID}
+				</if>
+				<if test="objTyp != null and objTyp != ''">
+					and obj_typ = #{objTyp}
+				</if>
+			</where>
+			<if test="objOrd != null and objOrd != ''">
+				order by ${objOrd}
+			</if>
+				) a
+			) aa
+		WHERE rn between ${startNum} and ${endNum}
+	</select>
+	
+	<!-- 도면 검색에서 사용하는 쿼리  -->
+	<select id="getSearchDwg" parameterType="java.util.HashMap" resultType="egovMap">
+		SELECT aa.* 
+		FROM (
+			SELECT  rownum rn, a.* 
+			FROM (
+				select map.obj_id, map.obj_nm, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, obj.obj_typ, obj.obj_x, obj.obj_y 
+				from dwg_gis_mapper map, dwg_gis_object obj
+				where obj.obj_id(+) = map.obj_id
+				<if test="dwgList != null and dwgList != ''">
+					and obj.mp_dwg_serno in 
+					<foreach collection="dwgList" item="dwg" separator="," open="(" close=")">
+						#{dwg.drwngSerno}	
+					</foreach>
+				</if>
+			) a
+			<if test="dwgOrd != null and dwgOrd != ''">
+				order by ${dwgOrd}
+			</if>
+		) aa
+		WHERE rn between ${startNum} and ${endNum}
+	</select>
+	
+		<!-- 도면 검색에서 사용하는 쿼리 CNT -->
+	<select id="getSearchDwgCnt" parameterType="java.util.HashMap" resultType="int">
+			SELECT count(a.obj_id) 
+			FROM (
+				select map.obj_id, map.mp_dwg_serno, map.mp_dwg_nm, map.mp_group_cd, obj.obj_typ, obj.obj_x, obj.obj_y 
+				from dwg_gis_mapper map, dwg_gis_object obj
+				where obj.obj_id(+) = map.obj_id
+				<if test="dwgList != null and dwgList != ''">
+					and obj.mp_dwg_serno in 
+					<foreach collection="dwgList" item="dwg" separator="," open="(" close=")">
+						#{dwg.drwngSerno}	
+					</foreach>
+				</if>
+			) a
+	</select>
+</mapper>

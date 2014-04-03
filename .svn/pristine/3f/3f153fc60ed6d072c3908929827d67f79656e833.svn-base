@@ -1,0 +1,202 @@
+package kr.mp.dwg.cmmn.util;
+
+import java.util.Properties;
+
+public class InitDwgSys  { 
+	
+	public static String params = "";
+	public static String viewUrl = "";
+	public static String dwgPage = "";
+	public static String dwgRow = "";
+	public static String dwgOrd = "";
+	public static String objPage = "";
+	public static String objRow = "";
+	public static String objOrd = "";
+	public static String dwgFlag = "";
+	public static String lang = "";
+	public static String popWidth="";
+	public static String popHeight="";
+	public static String configFile = "";
+	public static String CSS_PATH="";
+	public static String IMG_PATH="";
+	public static String langCd="";
+	public static String countryCd = "";
+	
+	
+	public InitDwgSys(Properties config) {
+		try {
+			params = config.getProperty("dwg.params");
+			viewUrl = config.getProperty("dwg.viewUrl");
+			dwgPage = config.getProperty("dwg.dwgPage");
+			dwgRow = config.getProperty("dwg.dwgRow");
+			dwgOrd = config.getProperty("dwg.dwgOrd");
+			dwgFlag = config.getProperty("dwg.dwgFlag");
+			objPage = config.getProperty("obj.objPage");
+			objRow = config.getProperty("obj.objRow");
+			objOrd = config.getProperty("obj.objOrd");
+			objOrd = config.getProperty("obj.objOrd");
+			lang = config.getProperty("words.lang");
+			popWidth = config.getProperty("dwg.popWidth");
+			popHeight = config.getProperty("dwg.popHeight");
+			CSS_PATH = config.getProperty("CSS_PATH");
+			IMG_PATH = config.getProperty("IMG_PATH");
+			langCd= config.getProperty("words.langCd");
+			countryCd=config.getProperty("words.countryCd");
+			
+			
+		} catch (Exception e) {
+			System.out.println("Configuration setting error - " + e.getMessage());
+		}
+	}
+	
+	public void setConfigFileName(String fileName) {
+		configFile = fileName;
+	}
+	
+	public static String getConfigFile() {
+		return configFile;
+	}
+
+	public static void setConfigFile(String configFile) {
+		InitDwgSys.configFile = configFile;
+	}
+
+	public static String getParams() {
+		return params;
+	}
+
+	public static String getLang() {
+		return lang;
+	}
+
+	public static void setLang(String lang) {
+		InitDwgSys.lang = lang;
+	}
+
+	public static void setParams(String params) {
+		InitDwgSys.params = params;
+	}
+
+	public static String getViewUrl() {
+		return viewUrl;
+	}
+
+	public static void setViewUrl(String viewUrl) {
+		InitDwgSys.viewUrl = viewUrl;
+	}
+
+	public static String getDwgPage() {
+		return dwgPage;
+	}
+
+	public static void setDwgPage(String dwgPage) {
+		InitDwgSys.dwgPage = dwgPage;
+	}
+
+	public static String getDwgRow() {
+		return dwgRow;
+	}
+
+	public static void setDwgRow(String dwgRow) {
+		InitDwgSys.dwgRow = dwgRow;
+	}
+
+	public static String getDwgOrd() {
+		return dwgOrd;
+	}
+
+	public static void setDwgOrd(String dwgOrd) {
+		InitDwgSys.dwgOrd = dwgOrd;
+	}
+
+	public static String getObjPage() {
+		return objPage;
+	}
+
+	public static void setObjPage(String objPage) {
+		InitDwgSys.objPage = objPage;
+	}
+
+	public static String getObjRow() {
+		return objRow;
+	}
+
+	public static void setObjRow(String objRow) {
+		InitDwgSys.objRow = objRow;
+	}
+
+	public static String getObjOrd() {
+		return objOrd;
+	}
+
+	public static void setObjOrd(String objOrd) {
+		InitDwgSys.objOrd = objOrd;
+	}
+
+	public static String getDwgFlag() {
+		return dwgFlag;
+	}
+
+	public static void setDwgFlag(String dwgFlag) {
+		InitDwgSys.dwgFlag = dwgFlag;
+	}
+
+	public static String getPopWidth() {
+		return popWidth;
+	}
+
+	public static void setPopWidth(String popWidth) {
+		InitDwgSys.popWidth = popWidth;
+	}
+
+	public static String getPopHeight() {
+		return popHeight;
+	}
+
+	public static void setPopHeight(String popHeight) {
+		InitDwgSys.popHeight = popHeight;
+	}
+
+	public static String getCSS_PATH() {
+		return CSS_PATH;
+	}
+
+	public static void setCSS_PATH(String cSS_PATH) {
+		CSS_PATH = cSS_PATH;
+	}
+
+	public static String getIMG_PATH() {
+		return IMG_PATH;
+	}
+
+	public static void setIMG_PATH(String iMG_PATH) {
+		IMG_PATH = iMG_PATH;
+	}
+
+	public static String getLangCd() {
+		return langCd;
+	}
+
+	public static void setLangCd(String langCd) {
+		InitDwgSys.langCd = langCd;
+	}
+
+	public static String getCountryCd() {
+		return countryCd;
+	}
+
+	public static void setCountryCd(String countryCd) {
+		InitDwgSys.countryCd = countryCd;
+	}
+	
+	
+//	public static String getConfigFile() {
+//		return configFile;
+//	}
+//
+//	public static void setConfigFile(String configFile) {
+//		InitDwgSys.configFile = configFile;
+//	}
+	
+	
+}

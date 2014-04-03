@@ -1,0 +1,29 @@
+@import url('common.css');
+
+/* layout */
+body{width:100%;height:100%;background:#e1e3e7 url(../../../images/common/bg_main_base.jpg) repeat-x left top;}
+#wrap{min-width:400px;height:830px;margin:0 auto;text-align:center;background:url(../../../images/common/bg_main.jpg) no-repeat center top;}
+#container{position:relative;top:270px;width:400px;height:278px;margin:0 auto;*zoom:1;}
+#container:after{content:"";clear:both;display:block;}
+
+/* logo */
+.logo_sect{position:relative;left:0;top:0;width:100%;}
+.logo, .logo_sub{}
+.logo{}
+.logo_sub{margin-top:8px;}
+
+/* Login Section */
+.login_sect{width:279px;margin:0 auto;}
+.login_sect fieldset{position:relative;top:20px;}
+.login_sect dl{overflow:hidden;position:relative;height:57px;}
+.login_sect dt, .login_sect dd{display:block;position:absolute;}
+.login_sect dt.uid{top:7px;left:51px;}
+.login_sect dt.upass{top:39px;left:0;}
+.login_sect dd.uid{top:1px;left:72px;}
+.login_sect dd.upass{top:33px;left:72px;}
+.login_sect input{width:132px;height:21px;border:1px solid #c3c3c3;}
+.login_sect p{overflow:visible;position:absolute;top:0;left:214px;vertical-align:top;}
+
+/* Copyright */
+.copy{position:absolute;bottom:1px;width:100%;font-size:10px;font-family:Arial;text-align:center;color:#575757;}
+.copy .comp_nm{color:#ed353c;}

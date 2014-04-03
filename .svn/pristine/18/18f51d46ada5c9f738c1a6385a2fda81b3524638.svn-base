@@ -1,0 +1,77 @@
+﻿/* Generic context menu styles */
+.gridMenu {
+	font-size:12px;font-family:?뗭?,Dotum,Arial,AppleGothic,sans-serif;
+	position: absolute;
+	width: 160px;
+	z-index: 99999;
+	border: solid 1px #CCC;
+	background: #EEE;
+	padding: 0px;
+	margin: 0px;
+	display: none;
+}
+
+.gridMenu LI {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.gridMenu A {
+	color: #333;
+	text-decoration: none;
+	display: block;
+	line-height: 20px;
+	height: 20px;
+	background-position: 6px center;
+	background-repeat: no-repeat;
+	outline: none;
+	padding: 1px 5px;
+	padding-left: 28px;
+}
+
+.gridMenu LI.hover A {
+	color: #FFF;
+	background-color: #3399FF;
+}
+
+.gridMenu LI.disabled A {
+	color: #AAA;
+	cursor: default;
+}
+
+.gridMenu LI.hover.disabled A {
+	background-color: transparent;
+}
+
+.gridMenu LI.separator {
+	border-top: solid 1px #CCC;
+}
+
+/*
+	Adding Icons
+	
+	You can add icons to the context menu by adding
+	classes to the respective LI element(s)
+*/
+
+.gridMenu LI.edit A { background-image: url(images/page_white_edit.png); }
+.gridMenu LI.cut A { background-image: url(images/cut.png); }
+.gridMenu LI.copy A { background-image: url(images/page_white_copy.png); }
+.gridMenu LI.paste A { background-image: url(images/page_white_paste.png); }
+.gridMenu LI.delete A { background-image: url(images/page_white_delete.png); }
+.gridMenu LI.quit A { background-image: url(images/door.png); }
+
+
+/*
+	custom 2010.10.14
+*/
+.gridMenu LI.wastebasket A { background-image: url(images/wastebasket.png); }
+.gridMenu LI.plus A { background-image: url(images/plus.png); }
+.gridMenu LI.information A { background-image: url(images/information.png); }
+.gridMenu LI.lightning A { background-image: url(images/lightning.png); }
+.gridMenu LI.edit2 A { background-image: url(images/edit.png); }
+.gridMenu LI.save A { background-image: url(images/i_save.gif); }
+.gridMenu LI.change A { background-image: url(images/change.gif); }
+.gridMenu LI.search A { background-image: url(images/search.gif); }
+.gridMenu LI.searchB A { background-image: url(images/searchB.gif); }

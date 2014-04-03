@@ -1,0 +1,34 @@
+package kr.mp.dwg.login.service.impl;
+
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
+import kr.mp.dwg.cmmn.util.StringUtil;
+import kr.mp.dwg.domain.UserVO;
+import kr.mp.dwg.login.service.LoginMapper;
+import kr.mp.dwg.login.service.LoginService;
+
+@Service("loginService")
+public class LoginServiceImpl extends AbstractServiceImpl implements LoginService {
+
+	/** MappDwgDAO */
+    @Resource(name="loginMapper")
+    private LoginMapper loginMapper;
+	
+	public UserVO getUserInfo(Map<String, String> paramMap) {
+		// 사용자정보 단건 조회
+		UserVO userVO = loginMapper.getUserInfo(paramMap);
+		
+		if(userVO != null){
+			/* 전화번호 정보를 포맷에 맞추어 세팅 */
+			userVO.setOffcNo(StringUtil.setTelNumberFormat(userVO.getOffcNo()));		// VO에 세팅
+			userVO.setHphoneNo(StringUtil.setTelNumberFormat(userVO.getHphoneNo()));
+		}
+		return userVO;
+	}
+	
+}

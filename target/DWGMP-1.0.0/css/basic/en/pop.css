@@ -1,0 +1,11 @@
+@charset "utf-8";
+@import url('default.css');
+
+/* 서비스별 적용 */
+body.bg2{background:#eee;}
+#wrap_pop{width:100%;min-width:600px;}
+#header_pop{overflow:hidden;width:100%;height:48px;background:#eb6a6f url(../../../images/basic/bg_tit_pop.gif) repeat-x left top;}
+.tit_pop{margin:13px 0 0 22px;padding:4px 0 0 30px;font-size:14px;font-weight:bold;color:#fff;background:url(../../../images/basic/ico_tit_pop.gif) no-repeat;}
+.tit_close{position:absolute;top:9px;right:15px;}
+#container_pop{clear:both;margin:25px 30px 30px 30px;*zoom:1;}
+#container_pop:after{content:"";clear:both;display:block;}

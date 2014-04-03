@@ -1,0 +1,35 @@
+eclipse.preferences.version=1
+encoding//src/main/java=EUC-KR
+encoding//src/main/java/kr/mp/dwg/cmmn/util=UTF-8
+encoding//src/main/java/kr/mp/dwg/cmmn/validation=UTF-8
+encoding//src/main/java/kr/mp/dwg/cmmn/web=UTF-8
+encoding//src/main/java/kr/mp/dwg/domain=UTF-8
+encoding//src/main/java/kr/mp/dwg/extMapper/service/ExtMapper.java=UTF-8
+encoding//src/main/java/kr/mp/dwg/loginMgt=UTF-8
+encoding//src/main/java/kr/mp/dwg/main=UTF-8
+<<<<<<< .mine
+encoding//src/main/java/kr/mp/dwg/mapDwgMgt=UTF-8
+=======
+>>>>>>> .r91
+encoding//src/main/java/kr/mp/dwg/mapperMgt=UTF-8
+encoding//src/main/java/kr/mp/dwg/objectMgt=UTF-8
+<<<<<<< .mine
+encoding//src/main/java/kr/mp/dwg/searchMgt=UTF-8
+=======
+>>>>>>> .r91
+encoding//src/main/resources/log4j.xml=UTF-8
+encoding//src/main/resources/messages/18n/messages_kr.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/cmmn/cmmnRout/cmmRoutSelect.jsp=EUC-KR
+encoding//src/main/webapp/common/error.jsp=euc-kr
+encoding//src/main/webapp/index.html=euc-kr
+encoding//src/main/webapp/js/lib/jqGrid/i18n_old/grid.locale-en.js=euc-kr
+encoding//src/main/webapp/js/lib/jqGrid/jquery.jqGrid.min_old.js=euc-kr
+encoding//src/main/webapp/js/lib/jqGrid/jquery.jqGrid.src_old.js=euc-kr
+encoding//src/main/webapp/js/lib/jquery-1.7.1.js=euc-kr
+encoding//src/main/webapp/js/lib/jquery-ui-1.8.2.custom.min.js=EUC-KR
+encoding//src/main/webapp/js/lib/jquery.timeentry.min.js=euc-kr
+encoding//src/main/webapp/js/lib/jquery1.7.1.min.js=euc-kr
+encoding//src/main/webapp/js/lib/jstree/jquery.jstree.js=UTF-8
+encoding//src/test/java=EUC-KR
+encoding/<project>=UTF-8
+\u00EF\u00BB\u00BFeclipse.preferences.version=1
